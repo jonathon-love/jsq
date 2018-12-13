@@ -1,0 +1,80 @@
+---
+name:  bttestIS
+title: Bayesian Independent Samples T-Test
+jrs:   '1.1'
+
+clearWith:
+  - vars
+  - group
+  - missing
+
+items:
+  - name: ttest
+    type: Table
+    columns: []
+    clearWith:
+      - bfType
+      - priorWidth
+      - test
+      - priorType
+      - priorWidth
+      - priorShape
+      - infoCL
+      - infoCS
+      - infoNL
+      - infoNS
+      - infoTL
+      - infoTS
+      - infoTDf
+  - name: descriptives
+    type: Group
+    items:
+      - name: descriptivesTable
+        type: Table
+        columns: []
+        clearWith:
+      - name: descriptivesPlots
+        type: Array
+        clearWith:
+        template:
+            name: item
+            type: Image
+            renderFun: .render
+            clearWith:
+  - name: inferentialPlots
+    type: Array
+    clearWith:
+      - bfType
+      - priorWidth
+      - test
+      - priorType
+      - priorWidth
+      - priorShape
+      - infoCL
+      - infoCS
+      - infoNL
+      - infoNS
+      - infoTL
+      - infoTS
+      - infoTDf
+    template:
+        name: plotGroups
+        type: Group
+        clearWith:
+        items:
+          - name: PriorPosteriorPlot
+            type: Image
+            renderFun: .render
+            clearWith:
+              - plotPPAddInfo
+          - name: BFrobustnessPlot
+            type: Image
+            renderFun: .render
+            clearWith:
+              - plotRobustAddInfo
+          - name: BFsequentialPlot
+            type: Image
+            renderFun: .render
+            clearWith:
+              - plotSeqRobust
+...

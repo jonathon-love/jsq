@@ -1,0 +1,221 @@
+title: Bayesian Independent Samples T-Test
+name: bttestIS
+jus: '2.0'
+stage: 0
+compilerMode: tame
+children:
+  - type: VariableSupplier
+    persistentItems: false
+    stretchFactor: 1
+    children:
+      - type: TargetLayoutBox
+        label: Dependent Variables
+        children:
+          - type: VariablesListBox
+            name: vars
+            isTarget: true
+      - type: TargetLayoutBox
+        label: Grouping Variable
+        children:
+          - type: VariablesListBox
+            name: group
+            maxItemCount: 1
+            isTarget: true
+  - type: LayoutBox
+    margin: large
+    stretchFactor: 1
+    children:
+      - type: LayoutBox
+        cell:
+          column: 0
+          row: 0
+        stretchFactor: 1
+        children:
+          - type: Label
+            label: Hypothesis
+            children:
+              - type: RadioButton
+                name: hypothesis_different
+                optionName: hypothesis
+                optionPart: different
+                label: Group 1 ≠ Group 2
+              - type: RadioButton
+                name: hypothesis_oneGreater
+                optionName: hypothesis
+                optionPart: oneGreater
+                label: Group 1 > Group 2
+              - type: RadioButton
+                name: hypothesis_twoGreater
+                optionName: hypothesis
+                optionPart: twoGreater
+                label: Group 1 < Group 2
+          - type: Label
+            label: Bayes factor
+            children:
+              - type: RadioButton
+                name: bfType_BF10
+                optionName: bfType
+                optionPart: BF10
+                label: BF₁₀
+              - type: RadioButton
+                name: bfType_BF01
+                optionName: bfType
+                optionPart: BF01
+                label: BF₀₁
+          - type: Label
+            label: Test
+            children:
+              - type: LayoutBox
+                margin: large
+                children:
+                  - type: RadioButton
+                    name: test_students
+                    optionName: test
+                    optionPart: students
+                  - type: RadioButton
+                    name: test_mann
+                    optionName: test
+                    optionPart: mann
+                    children:
+                      - type: TextBox
+                        name: mannN
+                        format: number
+                        enable: (test:mann)
+          - type: Label
+            label: Additional statistics
+            children:
+              - type: CheckBox
+                name: desc
+      - type: LayoutBox
+        cell:
+          column: 1
+          row: 0
+        stretchFactor: 1
+        children:
+          - type: Label
+            label: Plots
+            children:
+              - type: CheckBox
+                name: plotPP
+                children:
+                  - type: CheckBox
+                    name: plotPPAddInfo
+                    label: Additional info
+                    enable: (plotPP)
+              - type: CheckBox
+                name: plotRobust
+                children:
+                  - type: CheckBox
+                    name: plotRobustAddInfo
+                    label: Additional info
+                    enable: (plotRobust)
+              - type: CheckBox
+                name: plotSeq
+                children:
+                  - type: CheckBox
+                    name: plotSeqRobust
+                    label: Robustness check
+                    enable: (plotSeq)
+              - type: CheckBox
+                name: plotDesc
+                children:
+                  - type: TextBox
+                    name: plotDescCI
+                    label: Credible interval
+                    suffix: '%'
+                    format: number
+                    enable: (plotDesc)
+          - type: Label
+            label: Missing values
+            margin: large
+            children:
+              - type: RadioButton
+                name: missing_perAnalysis
+                optionName: missing
+                optionPart: perAnalysis
+                label: Exclude cases analysis by analysis
+              - type: RadioButton
+                name: missing_excludeListwise
+                optionName: missing
+                optionPart: listwise
+                label: Exclude cases listwise
+  - type: CollapseBox
+    label: Prior
+    collapsed: true
+    stretchFactor: 1
+    margin: large
+    children:
+      - type: RadioButton
+        name: priorType_default
+        label: Default (Cauchy)
+        optionName: priorType
+        optionPart: default
+        children:
+          - type: TextBox
+            name: priorWidth
+            label: Scale
+            format: number
+      - type: RadioButton
+        name: priorType_info
+        optionName: priorType
+        optionPart: info
+        children:
+          - type: RadioButton
+            name: infoShape_cauchy
+            optionName: infoShape
+            optionPart: cauchy
+            children:
+              - type: LayoutBox
+                style: inline
+                children:
+                  - type: TextBox
+                    name: infoCL
+                    format: number
+                    label: Location
+                    enable: (infoShape:cauchy)
+                  - type: TextBox
+                    name: infoCS
+                    format: number
+                    label: Scale
+                    enable: (infoShape:cauchy)
+          - type: RadioButton
+            name: infoShape_normal
+            optionName: infoShape
+            optionPart: normal
+            children:
+              - type: LayoutBox
+                style: inline
+                children:
+                  - type: TextBox
+                    name: infoNL
+                    format: number
+                    label: Location
+                    enable: (infoShape:normal)
+                  - type: TextBox
+                    name: infoNS
+                    format: number
+                    label: Scale
+                    enable: (infoShape:normal)
+          - type: RadioButton
+            name: infoShape_t
+            optionName: infoShape
+            optionPart: t
+            children:
+              - type: LayoutBox
+                style: inline
+                children:
+                  - type: TextBox
+                    name: infoTL
+                    format: number
+                    label: Location
+                    enable: (infoShape:t)
+                  - type: TextBox
+                    name: infoTS
+                    format: number
+                    label: Scale
+                    enable: (infoShape:t)
+                  - type: TextBox
+                    name: infoTDf
+                    format: number
+                    label: df
+                    enable: (infoShape:t)

@@ -13,6 +13,12 @@ description: >
   models, and contingency tables. These tests are a port of the Bayesian
   analyses from the JASP statistical software (see <a href="#">
   www.jasp-stats.org</a> for more information).
-analyses: []
+analyses:
+  - title: Bayesian Independent Samples T-Test
+    name: bttestIS
+    ns: jsq
+    menuGroup: T-Tests
+    menuSubgroup: Bayesian (jsq)
+    menuTitle: Bayesian Independent Samples T-Test
 
 ...
