@@ -20,5 +20,11 @@ analyses:
     menuGroup: T-Tests
     menuSubgroup: Bayesian (jsq)
     menuTitle: Bayesian Independent Samples T-Test
+  - title: Bayesian ANCOVA
+    name: bancova
+    ns: jsq
+    menuGroup: ANOVA
+    menuSubgroup: Bayesian (jsq)
+    menuTitle: Bayesian ANCOVA
 
 ...

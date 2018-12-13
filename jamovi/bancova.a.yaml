@@ -1,0 +1,151 @@
+---
+name:  bancova
+title: Bayesian ANCOVA
+menuGroup: ANOVA
+menuSubgroup: Bayesian (jsq)
+version: '1.0.0'
+jas: '1.2'
+
+options:
+    - name: data
+      type: Data
+
+    - name: dep
+      title: Dependent Variable
+      type: Variable
+
+    - name: factors
+      title: Fixed Factors
+      type: Variables
+
+    - name: random
+      title: Random Factors
+      type: Variables
+      default: null
+
+    - name: covs
+      title: Covariates
+      type: Variables
+
+    - name: bfType
+      title: Bayes factor
+      type: List
+      options:
+          - name: BF10
+            title: BF₁₀
+          - name: BF01
+            title: BF₀₁
+      default: BF10
+
+    - name: order
+      title: Order
+      type: List
+      options:
+        - name: nullModelTop
+          title: Compare to null model
+        - name: bestModelTop
+          title: Compare to best model
+      default: nullModelTop
+
+    - name: effects
+      title: Effects
+      type: Bool
+      default: false
+
+    - name: desc
+      title: Descriptives
+      type: Bool
+      default: false
+
+    - name: effectsType
+      title: Effects type
+      type: List
+      options:
+        - name: allModels
+          title: Across all models
+        - name: matchedModels
+          title: Across matched models
+      default: allModels
+
+    - name: modelTerms
+      title: Model Terms
+      type: Array
+      default:
+      template:
+          type: Group
+          elements:
+              - name: components
+                type: Array
+                template:
+                    type: String
+              - name: isNuisance
+                type: Bool
+
+    - name: postHoc
+      title: Post-hoc tests
+      type: Variables
+      default: null
+
+    - name: postHocCorr
+      title: Post-hoc correction
+      type: Bool
+      default: true
+
+    - name: plotHz
+      title: Horizontal axis
+      type: Variable
+      default: null
+
+    - name: plotLines
+      title: Separate lines
+      type: Variable
+      default: null
+
+    - name: plotSep
+      title: Separate plots
+      type: Variable
+      default: null
+
+    - name: plotCI
+      title: Credible interval
+      type: Bool
+      default: false
+
+    - name: ciWidth
+      title: Credible interval width
+      type: Number
+      default: 95
+      min: 50
+      max: 99.9
+
+    - name: rScaleFixed
+      title: r scale fixed effects
+      type: Number
+      default: 0.5
+
+    - name: rScaleRand
+      title: r scale random effects
+      type: Number
+      default: 1
+
+    - name: rScaleCovs
+      title: r scale covariates
+      type: Number
+      default: 0.354
+
+    - name: sampling
+      title: Samples
+      type: List
+      options:
+        - name: auto
+          title: Auto
+        - name: manual
+          title: Manual
+      default: auto
+
+    - name: nSamples
+      title: No. samples
+      type: Integer
+      default: 10000
+
+...

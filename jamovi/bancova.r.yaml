@@ -1,0 +1,52 @@
+---
+name:  bancova
+title: Bayesian ANCOVA
+jrs:   '1.1'
+
+clearWith:
+  - dep
+  - factors
+  - random
+  - covs
+
+items:
+  - name: model_comparison
+    type: Table
+    columns: []
+    clearWith:
+      - bfType
+      - order
+      - rScaleFixed
+      - rScaleRand
+      - rScaleCovs
+  - name: effects
+    type: Table
+    columns: []
+    clearWith:
+      - bfType
+      - effectsType
+      - rScaleFixed
+      - rScaleRand
+      - rScaleCovs
+  - name: posthoc
+    type: Array
+    clearWith:
+      - rScaleFixed
+      - rScaleRand
+      - rScaleCovs
+    template:
+        name: item
+        type: Table
+        columns: []
+  - name: descriptivesObj
+    type: Group
+    clearWith:
+    items:
+      - name: descriptivesTable
+        type: Table
+        columns: []
+      - name: descriptivesPlot
+        type: Image
+        renderFun: .render
+
+...
