@@ -1,0 +1,9 @@
+
+jamovi/ui/*.options.js
+build/js
+build/R
+temp/
+.Rproj.user
+.DS_Store
+*.jmo
+inst/doc
