@@ -15,15 +15,15 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-.quitAnalysis <- function(message) {
-  # Function to gracefully exit an analysis when continuing to run is nonsensical.
-  # Comparable to stop(message), except this does not raise an exception.
-  # Arg message: String with the reason why the analysis has ended.
-  
-  e <- structure(class = c('expectedError', 'error', 'condition'),
-                 list(message=message, call=sys.call(-1)))
-  stop(e)
-}
+# .quitAnalysis <- function(message) {
+#   # Function to gracefully exit an analysis when continuing to run is nonsensical.
+#   # Comparable to stop(message), except this does not raise an exception.
+#   # Arg message: String with the reason why the analysis has ended.
+#
+#   e <- structure(class = c('expectedError', 'error', 'condition'),
+#                  list(message=message, call=sys.call(-1)))
+#   stop(e)
+# }
 
 
 .addStackTrace <- function(e) {

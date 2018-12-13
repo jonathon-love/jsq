@@ -1651,27 +1651,27 @@ isTryError <- function(obj){
   return(result)
 }
 
-.retrieveState <- function() {
-
-	state <- NULL
-
-	if (base::exists(".requestStateFileNameNative")) {
-
-		location <- .fromRCPP(".requestStateFileNameNative")
-
-		relativePath <- location$relativePath
-
-		base::Encoding(relativePath) <- "UTF-8"
-
-		base::tryCatch(
-		  base::load(relativePath),
-		  error=function(e) e,
-		  warning=function(w) w
-		)
-	}
-
-	state
-}
+# .retrieveState <- function() {
+#
+# 	state <- NULL
+#
+# 	if (base::exists(".requestStateFileNameNative")) {
+#
+# 		location <- .fromRCPP(".requestStateFileNameNative")
+#
+# 		relativePath <- location$relativePath
+#
+# 		base::Encoding(relativePath) <- "UTF-8"
+#
+# 		base::tryCatch(
+# 		  base::load(relativePath),
+# 		  error=function(e) e,
+# 		  warning=function(w) w
+# 		)
+# 	}
+#
+# 	state
+# }
 
 .getStateFromKey <- function(stateKey, options) {
 	# Loads the state and then parses it based on a key, so only the reusable items are returned
@@ -2249,9 +2249,9 @@ as.list.footnotes <- function(footnotes) {
 
   # Operating System information
   type <- "cairo"
-  if (Sys.info()["sysname"]=="Darwin"){
-    type <- "quartz"
-  }
+  # if (Sys.info()["sysname"]=="Darwin"){
+    #type <- "quartz"
+  # }
   backgroundColor <- .fromRCPP(".imageBackground")
   if (ggplot2::is.ggplot(plot) || inherits(plot, c("gtable", "ggMatrixplot", "JASPgraphs"))) {
     ppi <- .fromRCPP(".ppi")
@@ -2538,53 +2538,53 @@ d64.list <- function(x, ...) {
   rapply(x, d64, ..., how = "replace")
 }
 
-.newProgressbar <- function(ticks, callback, skim=5, response=FALSE, parallel=FALSE) {
-  # This closure normally returns a progressbar function that expects to be called "ticks" times.
-  # If used in a parallel environment it returns a structure to the master process which is
-  # updated in the separate processes by .updateParallelProgressbar().
-
-	ticks <- suppressWarnings(as.integer(ticks))
-	if (is.na(ticks) || ticks <= 0)
-		stop("Invalid value provided to 'ticks', expecting positive integer")
-
-	if (! is.function(callback))
-		stop("The value provided to 'callback' does not appear to be a function")
-
-	if (! is.numeric(skim) || skim < 0 || skim >= 100)
-		stop("Invalid value provided to 'skim', expecting numeric value in the range of 0-99")
-
-	if (parallel)
-		response <- TRUE
-
-	progress <- 0
-	tick <- (100 - skim) / ticks
-	createEmpty <- TRUE
-
-	updater <- function(results=NULL, complete=FALSE) {
-		if (createEmpty) {
-			createEmpty <<- FALSE
-		} else if (complete) {
-			progress <<- 100
-		} else {
-			progress <<- progress + tick
-		}
-
-		if (progress > 100)
-			progress <<- 100
-
-		output <- callback(results=results, progress=round(progress))
-
-		if (response)
-			return(output)
-	}
-
-	updater() # create empty progressbar
-
-	if (parallel)
-		return(structure(list(updater=updater), class="JASP-progressbar"))
-
-	return(updater)
-}
+# .newProgressbar <- function(ticks, callback, skim=5, response=FALSE, parallel=FALSE) {
+#   # This closure normally returns a progressbar function that expects to be called "ticks" times.
+#   # If used in a parallel environment it returns a structure to the master process which is
+#   # updated in the separate processes by .updateParallelProgressbar().
+#
+# 	ticks <- suppressWarnings(as.integer(ticks))
+# 	if (is.na(ticks) || ticks <= 0)
+# 		stop("Invalid value provided to 'ticks', expecting positive integer")
+#
+# 	if (! is.function(callback))
+# 		stop("The value provided to 'callback' does not appear to be a function")
+#
+# 	if (! is.numeric(skim) || skim < 0 || skim >= 100)
+# 		stop("Invalid value provided to 'skim', expecting numeric value in the range of 0-99")
+#
+# 	if (parallel)
+# 		response <- TRUE
+#
+# 	progress <- 0
+# 	tick <- (100 - skim) / ticks
+# 	createEmpty <- TRUE
+#
+# 	updater <- function(results=NULL, complete=FALSE) {
+# 		if (createEmpty) {
+# 			createEmpty <<- FALSE
+# 		} else if (complete) {
+# 			progress <<- 100
+# 		} else {
+# 			progress <<- progress + tick
+# 		}
+#
+# 		if (progress > 100)
+# 			progress <<- 100
+#
+# 		output <- callback(results=results, progress=round(progress))
+#
+# 		if (response)
+# 			return(output)
+# 	}
+#
+# 	updater() # create empty progressbar
+#
+# 	if (parallel)
+# 		return(structure(list(updater=updater), class="JASP-progressbar"))
+#
+# 	return(updater)
+# }
 
 # Update the progressbar in a parallel environment.
 # It requires the progressbar from .newProgressbar() (this structure itself remains in the master process);
