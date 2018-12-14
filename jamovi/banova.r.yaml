@@ -1,0 +1,48 @@
+---
+name:  banova
+title: Bayesian ANOVA
+jrs:   '1.1'
+
+clearWith:
+  - dep
+  - factors
+  - random
+
+items:
+  - name: model_comparison
+    type: Table
+    columns: []
+    clearWith:
+      - bfType
+      - order
+      - rScaleFixed
+      - rScaleRand
+  - name: effects
+    type: Table
+    columns: []
+    clearWith:
+      - bfType
+      - effectsType
+      - rScaleFixed
+      - rScaleRand
+  - name: posthoc
+    type: Array
+    clearWith:
+      - rScaleFixed
+      - rScaleRand
+    template:
+        name: item
+        type: Table
+        columns: []
+  - name: descriptivesObj
+    type: Group
+    clearWith:
+    items:
+      - name: descriptivesTable
+        type: Table
+        columns: []
+      - name: descriptivesPlot
+        type: Image
+        renderFun: .render
+
+...
