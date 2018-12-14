@@ -33,5 +33,11 @@ analyses:
     menuGroup: ANOVA
     menuSubgroup: Bayesian (jsq)
     menuTitle: Bayesian ANCOVA
+  - title: Bayesian Contingency Tables
+    name: bcontTables
+    ns: jsq
+    menuGroup: Frequencies
+    menuSubgroup: Bayesian (jsq)
+    menuTitle: Bayesian Contingency Tables
 
 ...

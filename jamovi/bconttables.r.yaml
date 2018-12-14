@@ -1,0 +1,15 @@
+---
+name:  bcontTables
+title: Bayesian Contingency Tables
+jrs:   '1.1'
+
+clearWith:
+  - rows
+  - cols
+  - counts
+  - layers
+
+# contingency tables don't play nicely, so this
+# is handled in the .b.R
+
+items: [ ]

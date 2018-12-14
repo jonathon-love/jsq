@@ -1,0 +1,96 @@
+---
+name:  bcontTables
+title: Bayesian Contingency Tables
+menuGroup: Frequencies
+menuSubgroup: Bayesian (jsq)
+version: '1.0.0'
+jas: '1.2'
+
+options:
+    - name: data
+      type: Data
+
+    - name: rows
+      title: Rows
+      type: Variables
+
+    - name: cols
+      title: Columns
+      type: Variables
+
+    - name: counts
+      title: Counts
+      type: Variable
+      default: null
+
+    - name: layers
+      title: Layers
+      type: Variables
+      default: null
+
+    - name: sampling
+      title: Sampling
+      type: List
+      options:
+        - name: poisson
+          title: Poisson
+        - name: joint
+          title: Joint multinomial
+        - name: rowsFixed
+          title: Indep. multinomial, rows fixed
+        - name: colsFixed
+          title: Indep. multinomial, columns fixed
+        - name: hyper
+          title: Hypergeometric
+      default: poisson
+
+    - name: hypothesis
+      title: Alt. Hypothesis
+      type: List
+      options:
+        - name: different
+          title: Group 1 ≠ Group 2
+        - name: oneGreater
+          title: Group 1 > Group 2
+        - name: twoGreater
+          title: Group 1 < Group 2
+      default: different
+
+    - name: bfType
+      title: Bayes factor
+      type: List
+      options:
+        - name: BF10
+          title: BF₁₀
+        - name: BF01
+          title: BF₀₁
+      default: BF10
+
+    - name: oddsRatio
+      title: Log odds ratio
+      type: Bool
+      default: false
+
+    - name: oddsRatioCIWidth
+      title: Log odds credible interval
+      type: Number
+      default: 95
+      min: 50
+      max: 99.9
+
+    - name: plotOddsRatio
+      title: Log odds ratio plot
+      type: Bool
+      default: false
+
+    - name: plotOddsRatioAddInfo
+      title: Log odds ratio plot additional info
+      type: Bool
+      default: true
+
+    - name: priorWidth
+      title: Prior concentration
+      type: Number
+      default: 1
+
+...
