@@ -39,6 +39,13 @@ analyses:
     menuGroup: Regression
     menuSubgroup: Bayesian (jsq)
     menuTitle: Bayesian Linear Regression
+  - title: Bayesian Proportion Test
+    name: bpropTest2
+    ns: jsq
+    menuGroup: Frequencies
+    menuSubgroup: Bayesian (jsq)
+    menuTitle: Bayesian Proportion Test
+    menuSubtitle: 2 Outcomes - Binomial test
   - title: Bayesian Contingency Tables
     name: bcontTables
     ns: jsq
