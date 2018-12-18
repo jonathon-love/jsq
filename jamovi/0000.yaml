@@ -33,6 +33,12 @@ analyses:
     menuGroup: ANOVA
     menuSubgroup: Bayesian (jsq)
     menuTitle: Bayesian ANCOVA
+  - title: Bayesian Linear Regression
+    name: blinReg
+    ns: jsq
+    menuGroup: Regression
+    menuSubgroup: Bayesian (jsq)
+    menuTitle: Bayesian Linear Regression
   - title: Bayesian Contingency Tables
     name: bcontTables
     ns: jsq

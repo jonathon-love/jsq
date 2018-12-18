@@ -1,0 +1,68 @@
+---
+name:  blinReg
+title: Bayesian Linear Regression
+jrs:   '1.1'
+
+clearWith:
+  - deps
+  - covs
+  - wls
+
+items:
+  - name: regressionTable
+    type: Table
+    columns: []
+    clearWith: null
+  - name: posteriorSummary
+    type: Group
+    items:
+      - name: posteriorSummaryTable
+        type: Table
+        columns: []
+        clearWith: null
+      - name: posteriorSummaryPlot
+        type: Image
+        renderFun: .render
+        clearWith: null
+  - name: descriptivesTable
+    type: Table
+    columns: []
+    clearWith: null
+  - name: inferentialPlots
+    type: Group
+    clearWith: null
+    items:
+      - name: PosteriorPlotModels
+        type: Image
+        renderFun: .render
+        clearWith: null
+      - name: ResidualsVsFittedPlot
+        type: Image
+        renderFun: .render
+        clearWith: null
+      - name: ModelProbabilitiesPlot
+        type: Image
+        renderFun: .render
+        clearWith: null
+      - name: ModelComplexityPlot
+        type: Image
+        renderFun: .render
+        clearWith: null
+      - name: InclusionProbabilitiesPlot
+        type: Image
+        renderFun: .render
+        clearWith: null
+      - name: coefficentsPlots
+        type: Array
+        clearWith: null
+        template:
+          name: plotGroups
+          type: Group
+          clearWith: null
+          items:
+            - name: PosteriorCoefficients
+              type: Image
+              renderFun: .render
+              clearWith: null
+
+...
