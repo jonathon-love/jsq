@@ -1,0 +1,142 @@
+title: Bayesian Contingency Tables
+name: bcontTables
+jus: '2.0'
+stage: 0
+compilerMode: tame
+children:
+  - type: VariableSupplier
+    persistentItems: false
+    stretchFactor: 1
+    children:
+      - type: TargetLayoutBox
+        label: Rows
+        children:
+          - type: VariablesListBox
+            name: rows
+            height: small
+            isTarget: true
+      - type: TargetLayoutBox
+        label: Columns
+        children:
+          - type: VariablesListBox
+            name: cols
+            height: small
+            isTarget: true
+      - type: TargetLayoutBox
+        label: Counts
+        children:
+          - type: VariablesListBox
+            name: counts
+            maxItemCount: 1
+            isTarget: true
+      - type: TargetLayoutBox
+        label: Layers
+        children:
+          - type: VariablesListBox
+            name: layers
+            height: small
+            isTarget: true
+  - type: LayoutBox
+    margin: large
+    stretchFactor: 1
+    style: inline
+    children:
+      - type: LayoutBox
+        stretchFactor: 1
+        children:
+          - type: Label
+            label: Sampling
+            children:
+              - type: RadioButton
+                name: sampling_poisson
+                optionName: sampling
+                optionPart: poisson
+                label: Poisson
+              - type: RadioButton
+                name: sampling_joint
+                optionName: sampling
+                optionPart: joint
+                label: Joint multinomial
+              - type: RadioButton
+                name: sampling_rowsFixed
+                optionName: sampling
+                optionPart: rowsFixed
+                label: Indep. multinomial, rows fixed
+              - type: RadioButton
+                name: sampling_colsFixed
+                optionName: sampling
+                optionPart: colsFixed
+                label: Indep. multinomial, columns fixed
+              - type: RadioButton
+                name: sampling_hyper
+                optionName: sampling
+                optionPart: hyper
+                label: Hypergeometric (2x2 only)
+          - type: Label
+            label: Hypothesis
+            children:
+              - type: RadioButton
+                name: hypothesis_different
+                optionName: hypothesis
+                optionPart: different
+                label: Group one ≠ Group two
+                enable: (!(sampling_hyper))
+              - type: RadioButton
+                name: hypothesis_oneGreater
+                optionName: hypothesis
+                optionPart: oneGreater
+                label: Group one > Group two
+                enable: (!(sampling_hyper))
+              - type: RadioButton
+                name: hypothesis_twoGreater
+                optionName: hypothesis
+                optionPart: twoGreater
+                label: Group one < Group two
+                enable: (!(sampling_hyper))
+          - type: Label
+            label: Bayes Factor
+            children:
+              - type: RadioButton
+                name: bfType_BF10
+                optionName: bfType
+                optionPart: BF10
+                label: BF₁₀
+              - type: RadioButton
+                name: bfType_BF01
+                optionName: bfType
+                optionPart: BF01
+                label: BF₀₁
+      - type: LayoutBox
+        stretchFactor: 1
+        children:
+          - type: Label
+            label: Additional Statistics
+            children:
+                - type: CheckBox
+                  name: oddsRatio
+                  label: Log odds ration (2x2 only)
+                  children:
+                    - type: TextBox
+                      name: oddsRatioCIWidth
+                      format: number
+                      label: Credible Interval
+                      suffix: "%"
+                      enable: (oddsRatio)
+          - type: Label
+            label: Plots
+            children:
+              - type: CheckBox
+                name: plotOddsRatio
+                label: Log odds ratio (2x2 only)
+                children:
+                  - type: CheckBox
+                    name: plotOddsRatioAddInfo
+                    label: Additional info
+                    enable: (plotOddsRatio)
+          - type: Label
+            label: Prior
+            children:
+              - type: TextBox
+                name: priorWidth
+                format: number
+                label: Prior concentration
