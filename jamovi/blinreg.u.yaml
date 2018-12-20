@@ -1,0 +1,345 @@
+title: Bayesian Linear Regression
+name: blinReg
+jus: '2.0'
+stage: 0
+compilerMode: tame
+children:
+  - type: VariableSupplier
+    persistentItems: false
+    stretchFactor: 1
+    children:
+      - type: TargetLayoutBox
+        label: Dependent Variable
+        children:
+          - type: VariablesListBox
+            name: dep
+            maxItemCount: 1
+            isTarget: true
+      - type: TargetLayoutBox
+        label: Covariates
+        children:
+          - type: VariablesListBox
+            name: covs
+            isTarget: true
+      - type: TargetLayoutBox
+        label: WLS Weights
+        children:
+          - type: VariablesListBox
+            name: wls
+            maxItemCount: 1
+            isTarget: true
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: LayoutBox
+        margin: large
+        children:
+          - type: Label
+            label: Bayes Factor
+            children:
+              - type: RadioButton
+                name: bfType_BF10
+                optionName: bfType
+                optionPart: BF10
+                label: BF₁₀
+              - type: RadioButton
+                name: bfType_BF01
+                optionName: bfType
+                optionPart: BF01
+                label: BF₀₁
+          - type: Label
+            label: Order
+            children:
+              - type: RadioButton
+                name: order_nullModelTop
+                optionName: order
+                optionPart: nullModelTop
+                label: Compare to null model
+              - type: RadioButton
+                name: order_bestModelTop
+                optionName: order
+                optionPart: bestModelTop
+                label: Compare to best model
+          - type: Label
+            label: Data
+            children:
+              - type: CheckBox
+                name: desc
+      - type: LayoutBox
+        margin: large
+        cell:
+          column: 1
+          row: 0
+        children:
+          - type: Label
+            label: Output
+            children:
+              - type: CheckBox
+                name: postSumm
+                children:
+                  - type: ComboBox
+                    name: postSummModel
+                    label: Model
+                    enable: (postSumm)
+              - type: CheckBox
+                name: plotSumm
+                children:
+                  - type: TextBox
+                    name: ciWidth
+                    label: Credible interval
+                    format: number
+                    suffix: '%'
+                    enable: (plotSumm)
+                  - type: CheckBox
+                    name: omitIntercept
+                    enable: (plotSumm)
+          - type: Label
+            label: Limit no. models shown
+            children:
+              - type: RadioButton
+                name: limitModels_unlimited
+                optionName: limitModels
+                optionPart: unlimited
+                label: 'No'
+              - type: LayoutBox
+                children:
+                  - type: RadioButton
+                    name: limitModels_limited
+                    optionName: limitModels
+                    optionPart: limited
+                    label: 'Yes, show best'
+                    style: inline
+                    verticalAlignment: center
+                    children:
+                      - type: TextBox
+                        name: limitModelsN
+                        format: number
+                        label: ''
+                        enable: (limitModels_limited)
+  - type: CollapseBox
+    label: Model
+    collapsed: true
+    stretchFactor: 1
+    children:
+      - type: VariableSupplier
+        name: modelSupplier
+        label: Components
+        persistentItems: true
+        stretchFactor: 1
+        children:
+          - type: TargetLayoutBox
+            transferAction: interactions
+            stretchFactor: 2
+            children:
+              - type: ListBox
+                name: modelTerms
+                valueFilter: unique
+                isTarget: true
+                itemDropBehaviour: emptyspace
+                showColumnHeaders: true
+                columns:
+                  - name: components
+                    label: Terms
+                    selectable: true
+                    stretchFactor: 1
+                    maxWidth: 300
+                    template:
+                      type: TermLabel
+                  - name: isNuisance
+                    label: Add to null model
+                    selectable: false
+                    stretchFactor: 0.3
+                    template:
+                      type: CheckBox
+                      label: ''
+                      horizontalAlignment: center
+  - type: CollapseBox
+    label: Plots
+    collapsed: true
+    stretchFactor: 1
+    children:
+      - type: LayoutBox
+        margin: large
+        children:
+          - type: Label
+            label: Coefficients
+            children:
+              - type: CheckBox
+                name: plotCoefInc
+                label: Inclusion probabilities
+              - type: CheckBox
+                name: plotCoef
+                label: Marginal posterior distributions
+          - type: Label
+            label: Residuals
+            children:
+              - type: CheckBox
+                name: plotResVFit
+                label: Residuals vs. fitted
+      - type: LayoutBox
+        margin: large
+        cell:
+            row: 0
+            column: 1
+        children:
+          - type: Label
+            label: Models
+            children:
+              - type: CheckBox
+                name: plotOdds
+                label: Log posterior odds
+              - type: CheckBox
+                name: modelVSize
+                label: Log(P(data|M)) vs. model size
+              - type: CheckBox
+                name: modelProbs
+                label: Model probabilities
+  - type: CollapseBox
+    label: Advanced Options
+    collapsed: true
+    stretchFactor: 1
+    children:
+      - type: LayoutBox
+        stretchFactor: 1
+        margin: large
+        children:
+          - type: Label
+            label: Prior
+            children:
+              - type: RadioButton
+                name: prior_AIC
+                optionName: prior
+                optionPart: AIC
+                label: AIC
+              - type: RadioButton
+                name: prior_BIC
+                optionName: prior
+                optionPart: BIC
+                label: BIC
+              - type: RadioButton
+                name: prior_EB-global
+                optionName: prior
+                optionPart: EB-global
+                label: EB-global
+              - type: RadioButton
+                name: prior_EB-local
+                optionName: prior
+                optionPart: EB-local
+                label: EB-local
+              - type: RadioButton
+                name: prior_g-prior
+                optionName: prior
+                optionPart: g-prior
+                label: g-prior
+              - type: LayoutBox
+                margin: large
+                children:
+                  - type: RadioButton
+                    name: prior_hyper-g
+                    optionName: prior
+                    optionPart: hyper-g
+                    label: Hyper-g
+                  - type: RadioButton
+                    name: prior_hyper-g-laplace
+                    optionName: prior
+                    optionPart: hyper-g-laplace
+                    label: Hyper-g-Laplace
+                  - type: RadioButton
+                    name: prior_hyper-g-n
+                    optionName: prior
+                    optionPart: hyper-g-n
+                    label: Hyper-g-n
+                    children:
+                      - type: TextBox
+                        name: hAlpha
+                        format: number
+                        label: alpha
+                        enable: ((prior_hyper-g-n) || (prior_hyper-g-laplace) || (prior_hyper-g))
+              - type: RadioButton
+                name: prior_JZS
+                optionName: prior
+                optionPart: JZS
+                label: JZS
+                children:
+                  - type: TextBox
+                    name: jzsS
+                    label: r scale
+                    format: number
+                    enable: (prior_JZS)
+      - type: LayoutBox
+        margin: large
+        stretchFactor: 1
+        cell:
+            row: 0
+            column: 1
+        children:
+          - type: Label
+            label: Model prior
+            children:
+              - type: RadioButton
+                name: modelPrior_beta
+                optionName: modelPrior
+                optionPart: beta
+                label: Beta binomial
+                children:
+                  - type: LayoutBox
+                    style: inline
+                    children:
+                      - type: TextBox
+                        name: betaA
+                        format: number
+                        label: a
+                        enable: (modelPrior_beta)
+                      - type: TextBox
+                        name: betaB
+                        format: number
+                        label: b
+                        enable: (modelPrior_beta)
+              - type: RadioButton
+                name: modelPrior_bern
+                optionName: modelPrior
+                optionPart: bern
+                label: Bernoulli
+                children:
+                  - type: TextBox
+                    name: bernP
+                    label: p
+                    format: number
+                    enable: (modelPrior_bern)
+              - type: RadioButton
+                name: modelPrior_unif
+                optionName: modelPrior
+                optionPart: unif
+                label: Uniform
+          - type: Label
+            label: Sampling method
+            children:
+              - type: RadioButton
+                name: sampling_BAS
+                optionName: sampling
+                optionPart: BAS
+                label: BAS
+                children:
+                  - type: TextBox
+                    name: basNModels
+                    format: number
+                    label: No. models
+                    enable: (sampling_BAS)
+              - type: RadioButton
+                name: sampling_MCMC
+                optionName: sampling
+                optionPart: MCMC
+                label: MCMC
+                children:
+                  - type: TextBox
+                    name: mcmcN
+                    format: number
+                    label: No.samples
+                    enable: (sampling_MCMC)
+          - type: Label
+            label: Numerical accuracy
+            children:
+              - type: TextBox
+                name: ciN
+                format: number
+                label: No. samples for credible interval
