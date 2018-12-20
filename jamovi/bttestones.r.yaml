@@ -1,0 +1,11 @@
+---
+name:  bttestOneS
+title: Bayesian One Sample T-Test
+jrs:   '1.1'
+
+clearWith:
+  - vars
+  - missing
+
+items: []
+...

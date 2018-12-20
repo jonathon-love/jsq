@@ -1,0 +1,176 @@
+---
+name:  bttestOneS
+title: Bayesian One Sample T-Test
+menuGroup: T-Tests
+menuSubgroup: Bayesian (jsq)
+version: '1.0.0'
+jas: '1.2'
+
+options:
+    - name: data
+      type: Data
+
+    - name: vars
+      title: Dependent Variables
+      type: Variables
+      permitted: [ numeric ]
+      suggested: [ continuous ]
+
+    - name: testValue
+      title: Test Value
+      type: Number
+      default: 0
+
+    - name: hypothesis
+      title: Alt. Hypothesis
+      type: List
+      options:
+          - name: different
+            title: Mean ≠ Test value
+          - name: greater
+            title: Mean > Test value
+          - name: less
+            title: Mean < Test value
+      default: different
+
+    - name: bfType
+      title: Bayes factor
+      type: List
+      options:
+          - name: BF10
+            title: BF₁₀
+          - name: BF01
+            title: BF₀₁
+      default: BF10
+
+    - name: desc
+      title: Descriptives
+      type: Bool
+      default: false
+
+    - name: plotPP
+      title: Prior and posterior
+      type: Bool
+      default: false
+
+    - name: plotPPAddInfo
+      title: Prior and posterior additional info
+      type: Bool
+      default: true
+
+    - name: plotRobust
+      title: Bayes factor robustness check
+      type: Bool
+      default: false
+
+    - name: plotRobustAddInfo
+      title: Bayes factor robustness check additional info
+      type: Bool
+      default: true
+
+    - name: plotSeq
+      title: Sequential analysis
+      type: Bool
+      default: false
+
+    - name: plotSeqRobust
+      title: Sequential analysis robustness check
+      type: Bool
+      default: false
+
+    - name: plotDesc
+      title: Descriptives plots
+      type: Bool
+      default: false
+
+    - name: plotDescCI
+      title: Descriptives plots credible interval
+      type: Number
+      default: 95
+      min: 50
+      max: 99.9
+
+    - name: missing
+      title: Missing values
+      type: List
+      options:
+        - perAnalysis
+        - excludeListwise
+      default: perAnalysis
+
+    - name: priorType
+      title: Prior type
+      type: List
+      options:
+        - name: default
+          title: Default
+        - name: info
+          title: Informative
+      default: default
+
+    - name: priorWidth
+      title: Default prior width
+      type: Number
+      default: 0.707
+      min: 0
+      max: 2
+
+    - name: infoShape
+      title: Informative prior shape
+      type: List
+      options:
+        - name: cauchy
+          title: Cauchy
+        - name: normal
+          title: Normal
+        - name: t
+          title: t
+      default: cauchy
+
+    - name: infoCL
+      title: Cauchy location
+      type: Number
+      default: 0
+
+    - name: infoCS
+      title: Cauchy scale
+      type: Number
+      default: 0.707
+      min: 0
+      max: 2
+
+    - name: infoNL
+      title: Normal location
+      type: Number
+      default: 0
+
+    - name: infoNS
+      title: Normal scale
+      type: Number
+      default: 0.707
+
+    - name: infoTL
+      title: t location
+      type: Number
+      default: 0
+
+    - name: infoTS
+      title: t scale
+      type: Number
+      default: 0.707
+
+    - name: infoTDf
+      title: t df
+      type: Number
+      default: 1
+
+    - name: plotWidth
+      type: Integer
+      default: 320
+      hidden: true
+
+    - name: plotHeight
+      type: Integer
+      default: 240
+      hidden: true
+...

@@ -622,7 +622,7 @@ TTestBayesianPairedSamples <- function(dataset=NULL, options, perform="run", cal
 
 	# descriptives <- list()
 	if (options$descriptives) {
-	  descriptives <- .makeDescriptivesTableTTestBayesianPaired(dataset, options)
+	  descriptives <- .makeDescriptivesTableTTestBayesianPaired(dataset, options, perform)
 	  results[["descriptives"]][["descriptivesTable"]] <- descriptives
 	}
 
@@ -1037,7 +1037,7 @@ TTestBayesianPairedSamples <- function(dataset=NULL, options, perform="run", cal
 	return(p)
 }
 
-.makeDescriptivesTableTTestBayesianPaired <- function(dataset, options) {
+.makeDescriptivesTableTTestBayesianPaired <- function(dataset, options, perform) {
   # Creates a descriptives table outputs the JSON format
   #
   result <- list()
