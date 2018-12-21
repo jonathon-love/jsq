@@ -83,5 +83,11 @@ analyses:
     menuGroup: Regression
     menuSubgroup: Bayesian (jsq)
     menuTitle: Bayesian Correlation Pairs
+  - title: Bayesian Log-Linear Regression
+    name: blogLinear
+    ns: jsq
+    menuGroup: Frequencies
+    menuSubgroup: Bayesian (jsq)
+    menuTitle: Bayesian Log-Linear Regression
 
 ...

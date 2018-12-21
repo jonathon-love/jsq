@@ -1,0 +1,12 @@
+---
+name:  blogLinear
+title: Bayesian Log-Linear Regression
+jrs:   '1.1'
+
+clearWith:
+  - factors
+  - counts
+
+items: []
+
+...

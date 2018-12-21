@@ -16,4 +16,5 @@ Imports: jmvcore (>= 0.9.5.2),
          BayesFactor,
          JASPgraphs,
          plotrix,
-         logspline
+         logspline,
+         conting

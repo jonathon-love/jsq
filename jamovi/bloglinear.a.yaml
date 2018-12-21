@@ -1,0 +1,115 @@
+---
+name:  blogLinear
+title: Bayesian Log-Linear Regression
+menuGroup: Frequencies
+menuSubgroup: Bayesian (jsq)
+version: '1.0.0'
+jas: '1.2'
+
+options:
+    - name: data
+      type: Data
+
+    - name: factors
+      title: Fixed Factors
+      type: Variables
+
+    - name: counts
+      title: Counts (optional)
+      type: Variable
+      default: null
+
+    - name: bfType
+      title: Bayes factor
+      type: List
+      options:
+          - name: BF10
+            title: BF₁₀
+          - name: BF01
+            title: BF₀₁
+      default: BF10
+
+    - name: priorShape
+      title: Prior shape
+      type: Number
+      default: -1
+
+    - name: priorScale
+      title: Prior scale
+      type: Number
+      default: 0
+
+    - name: maxModels
+      title: Maximum models to show
+      type: Integer
+      default: 2
+
+    - name: postProbCutOff
+      title: Posterior probability cut-off
+      type: Number
+      default: 0.1
+
+    - name: modelTerms
+      title: Model Terms
+      type: Terms
+      default: null
+
+    - name: est
+      title: Regression coefficients estimates
+      type: Bool
+      default: false
+
+    - name: ci
+      title: Regression coefficients credible interval
+      type: Bool
+      default: false
+
+    - name: ciWidth
+      title: Regression coefficients credible interval width
+      type: Number
+      default: 95
+      min: 50
+      max: 99.9
+
+    - name: sub
+      title: Regression coefficients submodel
+      type: Bool
+      default: false
+
+    - name: subNo
+      title: Regression coefficients submodel selected
+      type: Integer
+      default: 1
+
+    - name: subEst
+      title: Regression coefficients submodel estimates
+      type: Bool
+      default: false
+
+    - name: subCI
+      title: Regression coefficients submodel credible interval
+      type: Bool
+      default: false
+
+    - name: subCIWidth
+      title: Regression coefficients submodel credible interval width
+      type: Number
+      default: 95
+      min: 50
+      max: 99.9
+
+    - name: sampling
+      title: Samples
+      type: List
+      options:
+        - name: auto
+          title: Auto
+        - name: manual
+          title: Manual
+      default: auto
+
+    - name: nSamples
+      title: No. samples
+      type: Integer
+      default: 10000
+...
