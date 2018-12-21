@@ -40,6 +40,12 @@ analyses:
     menuGroup: ANOVA
     menuSubgroup: Bayesian (jsq)
     menuTitle: Bayesian ANOVA
+  - title: Bayesian Repeated Measures ANOVA
+    name: banovaRM
+    ns: jsq
+    menuGroup: ANOVA
+    menuTitle: Bayesian Repeated Measures ANOVA
+    menuSubgroup: Bayesian (jsq)
   - title: Bayesian ANCOVA
     name: bancova
     ns: jsq

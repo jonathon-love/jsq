@@ -1,0 +1,221 @@
+---
+name:  banovaRM
+title: Bayesian Repeated Measures ANOVA
+menuGroup: ANOVA
+menuSubgroup: Bayesian (jsq)
+version: '1.0.0'
+jas: '1.2'
+
+options:
+    - name: data
+      type: Data
+
+    - name: rm
+      title: Repeated Measures Factors
+      type: Array
+      default:
+        - label: RM Factor 1
+          levels:
+          - Level 1
+          - Level 2
+      template:
+        type: Group
+        elements:
+          - name: label
+            type: String
+          - name: levels
+            type: Array
+            template:
+              type: String
+      description:
+          ui: >
+            the repeated measures design.
+          R: >
+            a list of lists, where each list describes the `label` (as a
+            string) and the `levels` (as vector of strings) of a particular
+            repeated measures factor
+
+    - name: rmCells
+      title: Repeated Measures Cells
+      type: Array
+      default:
+      template:
+        type: Group
+        elements:
+          - name: measure
+            type: Variable
+          - name: cell
+            type: Array
+            template:
+              type: String
+      description:
+          ui: >
+            the repeated measures measurements.
+          R: >
+            a list of lists, where each list decribes a repeated measure (as a
+            string) from `data` defined as `measure` and the
+            particular combination of levels from `rm` that it belongs to
+            (as a vector of strings) defined as `cell`
+
+    - name: bs
+      title: Between Subject Factors
+      type: Variables
+      rejectUnusedLevels: true
+      suggested:
+        - nominal
+        - ordinal
+      permitted:
+        - factor
+      default:
+      description:
+          ui: >
+            the between subjects factors (optional).
+          R: >
+            a vector of strings naming the between subjects factors from
+            `data`
+
+    - name: covs
+      title: Covariates
+      type: Variables
+      suggested:
+        - continuous
+      permitted:
+        - numeric
+      default:
+      description:
+          ui: >
+            the covariates (specifying these makes this an ANCOVA)
+          R: >
+            a vector of strings naming the covariates from `data`.
+            Variables must be numeric
+
+    - name: bfType
+      title: Bayes factor
+      type: List
+      options:
+          - name: BF10
+            title: BF₁₀
+          - name: BF01
+            title: BF₀₁
+      default: BF10
+
+    - name: order
+      title: Order
+      type: List
+      options:
+        - name: nullModelTop
+          title: Compare to null model
+        - name: bestModelTop
+          title: Compare to best model
+      default: nullModelTop
+
+    - name: effects
+      title: Effects
+      type: Bool
+      default: false
+
+    - name: desc
+      title: Descriptives
+      type: Bool
+      default: false
+
+    - name: effectsType
+      title: Effects type
+      type: List
+      options:
+        - name: allModels
+          title: Across all models
+        - name: matchedModels
+          title: Across matched models
+      default: allModels
+
+    - name: modelTerms
+      title: Model Terms
+      type: Array
+      default:
+      template:
+          type: Group
+          elements:
+              - name: components
+                type: Array
+                template:
+                    type: String
+              - name: isNuisance
+                type: Bool
+
+    - name: postHoc
+      title: Post-hoc tests
+      type: Variables
+      default: null
+
+    - name: postHocCorr
+      title: Post-hoc correction
+      type: Bool
+      default: true
+
+    - name: plotHz
+      title: Horizontal axis
+      type: String
+
+    - name: plotLines
+      title: Separate lines
+      type: String
+
+    - name: plotSep
+      title: Separate plots
+      type: String
+
+    - name: depLabel
+      title: ''
+      type: String
+      default: 'Dependent'
+      description:
+          ui: >
+            the label to use for the dependent variable.
+          R: >
+            a string (default: 'Dependent') describing the label used for
+            the dependent variable throughout the analysis
+
+    - name: plotCI
+      title: Credible interval
+      type: Bool
+      default: false
+
+    - name: ciWidth
+      title: Credible interval width
+      type: Number
+      default: 95
+      min: 50
+      max: 99.9
+
+    - name: rScaleFixed
+      title: r scale fixed effects
+      type: Number
+      default: 0.5
+
+    - name: rScaleRand
+      title: r scale random effects
+      type: Number
+      default: 1
+
+    - name: rScaleCovs
+      title: r scale covariates
+      type: Number
+      default: 0.354
+
+    - name: sampling
+      title: Samples
+      type: List
+      options:
+        - name: auto
+          title: Auto
+        - name: manual
+          title: Manual
+      default: auto
+
+    - name: nSamples
+      title: No. samples
+      type: Integer
+      default: 10000
+
+...
