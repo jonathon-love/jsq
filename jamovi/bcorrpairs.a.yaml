@@ -1,0 +1,104 @@
+---
+name:  bcorrPairs
+title: Bayesian Correlation Pairs
+menuGroup: Regression
+menuSubgroup: Bayesian (jsq)
+version: '1.0.0'
+jas: '1.2'
+
+options:
+    - name: data
+      type: Data
+
+    - name: pairs
+      title: Paired Variables
+      type: Pairs
+      suggested:
+        - continuous
+      permitted:
+        - numeric
+
+    - name: stat
+      title: Correlation coefficient
+      type: List
+      options:
+        - name: pearson
+          title: Pearson's rho
+        - name: kendall
+          title: Kendall's tau-b
+      default: pearson
+
+    - name: hypothesis
+      title: Hypothesis (H₁)
+      type: List
+      options:
+        - title: Correlated
+          name:  corr
+        - title: Correlated positively
+          name:  pos
+        - title: Correlated negatively
+          name:  neg
+      default: corr
+
+    - name: bfType
+      title: Bayes factor
+      type: List
+      options:
+          - name: BF10
+            title: BF₁₀
+          - name: BF01
+            title: BF₀₁
+      default: BF10
+
+    - name: priorWidth
+      title: Stretched beta prior width
+      type: Number
+      min: 0
+      max: 2
+      default: 1
+
+    - name: ci
+      title: Credible intervals
+      type: Bool
+      default: false
+
+    - name: plotScat
+      title: Scatterplot
+      type: Bool
+      default: false
+
+    - name: plotPP
+      title: Prior and posterior
+      type: Bool
+      default: false
+
+    - name: plotPPAddInfo
+      title: Prior and posterior additional info
+      type: Bool
+      default: true
+
+    - name: plotRobust
+      title: Bayes factor robustness check
+      type: Bool
+      default: false
+
+    - name: plotRobustAddInfo
+      title: Bayes factor robustness check additional info
+      type: Bool
+      default: true
+
+    - name: plotSeq
+      title: Sequential analysis
+      type: Bool
+      default: false
+
+    - name: missing
+      title: Missing values
+      type: List
+      options:
+        - name: perAnalysis
+          title: Exclude cases analysis by analysis
+        - name: listwise
+          title: Exclude cases listwise
+      default: perAnalysis
+...

@@ -65,5 +65,17 @@ analyses:
     menuGroup: Frequencies
     menuSubgroup: Bayesian (jsq)
     menuTitle: Bayesian Contingency Tables
+  - title: Bayesian Correlation Matrix
+    name: bcorrMatrix
+    ns: jsq
+    menuGroup: Regression
+    menuSubgroup: Bayesian (jsq)
+    menuTitle: Bayesian Correlation Matrix
+  - title: Bayesian Correlation Pairs
+    name: bcorrPairs
+    ns: jsq
+    menuGroup: Regression
+    menuSubgroup: Bayesian (jsq)
+    menuTitle: Bayesian Correlation Pairs
 
 ...

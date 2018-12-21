@@ -1,0 +1,11 @@
+---
+name:  bcorrPairs
+title: Bayesian Correlation Pairs
+jrs:   '1.1'
+
+clearWith:
+  - pairs
+
+items: [ ]
+
+...

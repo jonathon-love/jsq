@@ -1,0 +1,95 @@
+---
+name:  bcorrMatrix
+title: Bayesian Correlation Matrix
+menuGroup: Regression
+menuSubgroup: Bayesian (jsq)
+version: '1.0.0'
+jas: '1.2'
+
+options:
+    - name: data
+      type: Data
+
+    - name: vars
+      title: ''
+      type: Variables
+
+    - name: pearson
+      title: Pearson's rho
+      type: Bool
+      default: true
+
+    - name: kendall
+      title: Kendall's tau-b
+      type: Bool
+      default: false
+
+    - name: hypothesis
+      title: Hypothesis (H₁)
+      type: List
+      options:
+        - title: Correlated
+          name:  correlated
+        - title: Correlated positively
+          name:  correlatedPositively
+        - title: Correlated negatively
+          name:  correlatedNegatively
+      default: correlated
+
+    - name: bfType
+      title: Bayes factor
+      type: List
+      options:
+          - name: BF10
+            title: BF₁₀
+          - name: BF01
+            title: BF₀₁
+      default: BF10
+
+    - name: bf
+      title: Report Bayes factors
+      type: Bool
+      default: true
+
+    - name: flag
+      title: Flag supported correlations
+      type: Bool
+      default: false
+
+    - name: ci
+      title: Credible intervals
+      type: Bool
+      default: false
+
+    - name: plotMatrix
+      title: Correlation matrix
+      type: Bool
+      default: false
+
+    - name: plotDens
+      title: Densities for variables
+      type: Bool
+      default: false
+
+    - name: plotPost
+      title: Posteriors under H₁
+      type: Bool
+      default: false
+
+    - name: priorWidth
+      title: Stretched beta prior width
+      type: Number
+      min: 0
+      max: 2
+      default: 1
+
+    - name: missing
+      title: Missing values
+      type: List
+      options:
+        - name: excludePairwise
+          title: Exclude cases pairwise
+        - name: excludeListwise
+          title: Exclude cases listwise
+      default: excludePairwise
+...
