@@ -11,10 +11,6 @@ const events = {
         updatePostHocSupplier(ui, this);
     },
 
-    onChange_covs: function(ui) {
-        calcModelTerms(ui, this);
-    },
-
     onChange_random: function(ui) {
         calcModelTerms(ui, this);
         updatePostHocSupplier(ui, this);
@@ -40,17 +36,13 @@ const events = {
 
 var calcModelTerms = function(ui, context) {
     var variableList = context.cloneArray(ui.factors.value(), []);
-    var covariatesList = context.cloneArray(ui.covs.value(), []);
     var randomList = context.cloneArray(ui.random.value(), []);
 
-    ui.plotsSupplier.setValue(context.valuesToItems(variableList.concat(randomList), FormatDef.variable));
-
-    var combinedList = variableList.concat(randomList).concat(covariatesList);
-
+    var combinedList = variableList.concat(randomList);
+    ui.plotsSupplier.setValue(context.valuesToItems(combinedList, FormatDef.variable));
     ui.modelSupplier.setValue(context.valuesToItems(combinedList, FormatDef.variable));
 
     var diff = context.findChanges("variableList", variableList, true, FormatDef.variable);
-    var diff2 = context.findChanges("covariatesList", covariatesList, true, FormatDef.variable);
     var diff3 = context.findChanges("randomList", randomList, true, FormatDef.variable);
     var combinedDiff = context.findChanges("combinedList", combinedList, true, FormatDef.variable);
 
@@ -72,7 +64,7 @@ var calcModelTerms = function(ui, context) {
         var listLength = termsList.length;
         for (var j = 0; j < listLength; j++) {
             var newTerm = context.clone(termsList[j].components);
-            if (containsCovariate(newTerm, covariatesList) === false && containsCovariate(newTerm, randomList) === false) {
+            if (containsCovariate(newTerm, randomList) === false) {
                 if (context.listContains(newTerm, item, FormatDef.variable) === false) {
                     newTerm.push(item)
                     if (context.listContains(termsList, newTerm , FormatDef.term, 'components') === false) {
@@ -95,16 +87,6 @@ var calcModelTerms = function(ui, context) {
             termsChanged = true;
         }
     }
-
-    for (var a = 0; a < diff2.added.length; a++) {
-        let item = diff2.added[a];
-        if (context.listContains(termsList, [item] , FormatDef.term, 'components') === false) {
-            termsList.push({ components: [item], isNuisance: false });
-            termsChanged = true;
-        }
-    }
-
-
 
     if (termsChanged)
         ui.modelTerms.setValue(termsList);

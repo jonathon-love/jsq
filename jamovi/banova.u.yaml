@@ -3,6 +3,8 @@ name: banova
 jus: '2.0'
 stage: 0
 compilerMode: tame
+events:
+  update: './banova.events::update'
 children:
   - type: VariableSupplier
     persistentItems: false
@@ -22,6 +24,8 @@ children:
             name: factors
             height: small
             isTarget: true
+            events:
+              change: './banova.events::onChange_factors'
       - type: TargetLayoutBox
         label: Random Factors
         children:
@@ -29,6 +33,8 @@ children:
             name: random
             height: small
             isTarget: true
+            events:
+              change: './banova.events::onChange_random'
   - type: LayoutBox
     margin: large
     children:
@@ -108,6 +114,8 @@ children:
                 isTarget: true
                 itemDropBehaviour: emptyspace
                 showColumnHeaders: true
+                events:
+                  change: './banova.events::onChange_modelTerms'
                 columns:
                   - name: components
                     label: Terms
@@ -130,8 +138,11 @@ children:
     stretchFactor: 1
     children:
       - type: VariableSupplier
+        name: postHocSupplier
         persistentItems: false
         stretchFactor: 1
+        events:
+          change: './banova.events::onChange_postHocSupplier'
         children:
           - type: TargetLayoutBox
             children:
@@ -153,8 +164,11 @@ children:
     stretchFactor: 1
     children:
       - type: VariableSupplier
+        name: plotsSupplier
         persistentItems: false
         stretchFactor: 1
+        events:
+            change: './banova.events::onChange_plotsSupplier'
         children:
           - type: TargetLayoutBox
             label: Horizontal axis

@@ -150,21 +150,18 @@ children:
     collapsed: true
     stretchFactor: 1
     children:
-      - type: Supplier
+      - type: VariableSupplier
         name: postHocSupplier
         persistentItems: false
         stretchFactor: 1
-        format: term
         events:
           change: './bancova.events::onChange_postHocSupplier'
         children:
           - type: TargetLayoutBox
             children:
-              - type: ListBox
+              - type: VariablesListBox
                 name: postHoc
                 isTarget: true
-                template:
-                  type: TermLabel
       - type: LayoutBox
         margin: large
         children:

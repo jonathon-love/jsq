@@ -146,7 +146,7 @@ children:
                     template:
                       type: TermLabel
                   - name: isNuisance
-                    label: Add to null model
+                    label: 'Null'
                     selectable: false
                     stretchFactor: 0.3
                     template:
