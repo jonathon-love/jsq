@@ -1,0 +1,114 @@
+title: Bayesian Correlation Matrix
+name: bcorrMatrix
+jus: '2.0'
+stage: 0
+compilerMode: tame
+children:
+  - type: VariableSupplier
+    persistentItems: false
+    stretchFactor: 1
+    children:
+      - type: TargetLayoutBox
+        label: ''
+        children:
+          - type: VariablesListBox
+            name: vars
+            isTarget: true
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: LayoutBox
+        margin: large
+        children:
+          - type: Label
+            label: Correlation Coefficients
+            children:
+              - type: CheckBox
+                name: pearson
+              - type: CheckBox
+                name: kendall
+          - type: Label
+            label: Hypothesis
+            children:
+              - type: RadioButton
+                name: hypothesis_correlated
+                optionName: hypothesis
+                optionPart: correlated
+                label: Correlated
+              - type: RadioButton
+                name: hypothesis_correlatedPositively
+                optionName: hypothesis
+                optionPart: correlatedPositively
+                label: Correlated positively
+              - type: RadioButton
+                name: hypothesis_correlatedNegatively
+                optionName: hypothesis
+                optionPart: correlatedNegatively
+                label: Correlated negatively
+          - type: Label
+            label: Bayes Factor
+            children:
+              - type: RadioButton
+                name: bfType_BF10
+                optionName: bfType
+                optionPart: BF10
+                label: BF₁₀
+              - type: RadioButton
+                name: bfType_BF01
+                optionName: bfType
+                optionPart: BF01
+                label: BF₀₁
+      - type: LayoutBox
+        margin: large
+        cell:
+          column: 1
+          row: 0
+        children:
+          - type: LayoutBox
+            margin: large
+            children:
+              - type: CheckBox
+                name: bf
+              - type: CheckBox
+                name: flag
+              - type: CheckBox
+                name: ci
+          - type: Label
+            label: Plots
+            children:
+              - type: CheckBox
+                name: plotMatrix
+                children:
+                  - type: CheckBox
+                    name: plotDens
+                    enable: (plotMatrix)
+                  - type: CheckBox
+                    name: plotPost
+                    enable: (plotMatrix)
+          - type: LayoutBox
+            margin: large
+            children:
+              - type: TextBox
+                name: priorWidth
+                format: number
+  - type: CollapseBox
+    label: Prior
+    collapsed: true
+    stretchFactor: 1
+    children:
+      - type: LayoutBox
+        margin: large
+        children:
+          - type: Label
+            label: Missing Values
+            children:
+              - type: RadioButton
+                name: missing_excludePairwise
+                optionName: missing
+                optionPart: excludePairwise
+                label: Exclude cases pairwise
+              - type: RadioButton
+                name: missing_excludeListwise
+                optionName: missing
+                optionPart: excludeListwise
+                label: Exclude cases listwise
