@@ -1,0 +1,274 @@
+title: Bayesian Repeated Measures ANOVA
+name: banovaRM
+jus: '2.0'
+stage: 0
+compilerMode: tame
+events:
+  update: './banovarm.events::update'
+children:
+  - type: VariableSupplier
+    persistentItems: false
+    stretchFactor: 1
+    children:
+      - type: RMAnovaFactorsBox
+        name: rm
+        label: Repeated Measures Factors
+        events:
+          change: './banovarm.events::onChange_rm'
+      - type: TargetLayoutBox
+        children:
+          - type: ListBox
+            name: rmCells
+            height: large
+            events:
+              change: './banovarm.events::onChange_rmCells'
+            templateName: rmcell-template
+            template:
+              type: LayoutBox
+              targetArea: true
+              children:
+                - type: VariablesListBox
+                  fullRowSelect: true
+                  maxItemCount: 1
+                  isTarget: true
+                  valueKey:
+                    - measure
+                  ghostText: drag variable here
+                - type: Label
+                  format: ./rmacell
+                  valueKey:
+                    - cell
+                  margin: normal
+                  stretchFactor: 1
+                  horizontalAlignment: right
+      - type: TargetLayoutBox
+        label: Between Subject Factors
+        children:
+          - type: VariablesListBox
+            name: bs
+            isTarget: true
+            height: small
+      - type: TargetLayoutBox
+        label: Covariates
+        children:
+          - type: VariablesListBox
+            name: covs
+            isTarget: true
+            height: small
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: LayoutBox
+        margin: large
+        children:
+          - type: Label
+            label: Bayes Factor
+            children:
+              - type: RadioButton
+                name: bfType_BF10
+                optionName: bfType
+                optionPart: BF10
+                label: BF₁₀
+              - type: RadioButton
+                name: bfType_BF01
+                optionName: bfType
+                optionPart: BF01
+                label: BF₀₁
+          - type: Label
+            label: Order
+            children:
+              - type: RadioButton
+                name: order_nullModelTop
+                optionName: order
+                optionPart: nullModelTop
+                label: Compare to null model
+              - type: RadioButton
+                name: order_bestModelTop
+                optionName: order
+                optionPart: bestModelTop
+                label: Compare to best model
+      - type: LayoutBox
+        margin: large
+        cell:
+          column: 1
+          row: 0
+        children:
+          - type: Label
+            label: Output
+            children:
+              - type: CheckBox
+                name: effects
+                children:
+                  - type: RadioButton
+                    name: effectsType_allModels
+                    optionName: effectsType
+                    optionPart: allModels
+                    label: Across all models
+                    enable: (effects)
+                  - type: RadioButton
+                    name: effectsType_matchedModels
+                    optionName: effectsType
+                    optionPart: matchedModels
+                    label: Across matched models
+                    enable: (effects)
+              - type: CheckBox
+                name: desc
+  - type: CollapseBox
+    label: Model
+    collapsed: true
+    stretchFactor: 1
+    children:
+      - type: VariableSupplier
+        name: modelSupplier
+        label: Components
+        persistentItems: true
+        stretchFactor: 1
+        children:
+          - type: TargetLayoutBox
+            transferAction: interactions
+            stretchFactor: 2
+            children:
+              - type: ListBox
+                name: modelTerms
+                valueFilter: unique
+                isTarget: true
+                itemDropBehaviour: emptyspace
+                showColumnHeaders: true
+                columns:
+                  - name: components
+                    label: Terms
+                    selectable: true
+                    stretchFactor: 1
+                    maxWidth: 300
+                    template:
+                      type: TermLabel
+                  - name: isNuisance
+                    label: 'Null'
+                    selectable: false
+                    stretchFactor: 0.3
+                    template:
+                      type: CheckBox
+                      label: ''
+                      horizontalAlignment: center
+  - type: CollapseBox
+    label: Post-Hoc Tests
+    collapsed: true
+    stretchFactor: 1
+    children:
+      - type: VariableSupplier
+        persistentItems: false
+        stretchFactor: 1
+        children:
+          - type: TargetLayoutBox
+            children:
+              - type: VariablesListBox
+                name: postHoc
+                isTarget: true
+      - type: LayoutBox
+        margin: large
+        children:
+          - type: Label
+            label: Correction
+            children:
+              - type: CheckBox
+                name: postHocCorr
+                label: Null control
+  - type: CollapseBox
+    label: Descriptive Plots
+    collapsed: true
+    stretchFactor: 1
+    children:
+      - type: VariableSupplier
+        persistentItems: false
+        stretchFactor: 1
+        children:
+          - type: TargetLayoutBox
+            label: Horizontal axis
+            children:
+              - type: ListBox
+                name: plotHz
+                maxItemCount: 1
+                isTarget: true
+                template:
+                    type: VariableLabel
+          - type: TargetLayoutBox
+            label: Separate lines
+            children:
+              - type: ListBox
+                name: plotLines
+                maxItemCount: 1
+                isTarget: true
+                template:
+                    type: VariableLabel
+          - type: TargetLayoutBox
+            label: Separate plots
+            children:
+              - type: ListBox
+                name: plotSep
+                maxItemCount: 1
+                isTarget: true
+                template:
+                    type: VariableLabel
+      - type: LayoutBox
+        margin: large
+        children:
+          - type: Label
+            label: Display
+            children:
+              - type: TextBox
+                name: depLabel
+                format: string
+                label: Label y-axis
+                width: largest
+              - type: CheckBox
+                name: plotCI
+                label: Credible interval
+                children:
+                  - type: TextBox
+                    name: ciWidth
+                    label: Interval
+                    format: number
+                    suffix: '%'
+                    enable: (plotCI)
+  - type: CollapseBox
+    label: Advanced Options
+    collapsed: true
+    stretchFactor: 1
+    children:
+      - type: LayoutBox
+        margin: large
+        children:
+          - type: Label
+            label: Prior
+            children:
+              - type: TextBox
+                name: rScaleFixed
+                format: number
+              - type: TextBox
+                name: rScaleRand
+                format: number
+              - type: TextBox
+                name: rScaleCovs
+                format: number
+          - type: Label
+            label: Samples
+            cell:
+              row: 0
+              column: 1
+            children:
+              - type: RadioButton
+                name: sampling_auto
+                optionName: sampling
+                optionPart: auto
+                label: Auto
+              - type: RadioButton
+                name: sampling_manual
+                optionName: sampling
+                optionPart: manual
+                label: Manual
+                children:
+                  - type: TextBox
+                    name: nSamples
+                    label: No. samples
+                    format: number
+                    enable: (sampling_manual)
