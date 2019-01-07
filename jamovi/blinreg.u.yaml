@@ -3,6 +3,8 @@ name: blinReg
 jus: '2.0'
 stage: 0
 compilerMode: tame
+events:
+  update: './blinreg.events::update'
 children:
   - type: VariableSupplier
     persistentItems: false
@@ -21,6 +23,8 @@ children:
           - type: VariablesListBox
             name: covs
             isTarget: true
+            events:
+              change: './blinreg.events::onChange_covs'
       - type: TargetLayoutBox
         label: WLS Weights
         children:
@@ -122,6 +126,7 @@ children:
     stretchFactor: 1
     children:
       - type: VariableSupplier
+        populate: manual
         name: modelSupplier
         label: Components
         persistentItems: true
@@ -137,6 +142,8 @@ children:
                 isTarget: true
                 itemDropBehaviour: emptyspace
                 showColumnHeaders: true
+                events:
+                  change: './blinreg.events::onChange_modelTerms'
                 columns:
                   - name: components
                     label: Terms

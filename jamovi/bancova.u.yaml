@@ -110,12 +110,12 @@ children:
     collapsed: true
     stretchFactor: 1
     children:
-      - type: Supplier
+      - type: VariableSupplier
+        populate: manual
         name: modelSupplier
         label: Components
         persistentItems: true
         stretchFactor: 1
-        format: term
         children:
           - type: TargetLayoutBox
             transferAction: interactions

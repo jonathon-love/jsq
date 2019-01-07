@@ -101,6 +101,7 @@ children:
       - type: VariableSupplier
         name: modelSupplier
         label: Components
+        populate: manual
         persistentItems: true
         stretchFactor: 1
         children:
@@ -141,6 +142,7 @@ children:
         name: postHocSupplier
         persistentItems: false
         stretchFactor: 1
+        populate: manual
         events:
           change: './banova.events::onChange_postHocSupplier'
         children:
