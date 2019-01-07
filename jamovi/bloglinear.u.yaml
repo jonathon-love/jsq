@@ -3,6 +3,8 @@ name: blogLinear
 jus: '2.0'
 stage: 0
 compilerMode: tame
+events:
+  update: './bloglinear.events::update'
 children:
   - type: VariableSupplier
     persistentItems: false
@@ -14,6 +16,8 @@ children:
           - type: VariablesListBox
             name: factors
             isTarget: true
+            events:
+              change: './bloglinear.events::onChange_factors'
       - type: TargetLayoutBox
         label: Counts (optional)
         children:
@@ -83,6 +87,7 @@ children:
     children:
       - type: VariableSupplier
         name: modelSupplier
+        populate: manual
         label: Components
         persistentItems: true
         stretchFactor: 1
@@ -95,6 +100,8 @@ children:
                 valueFilter: unique
                 isTarget: true
                 itemDropBehaviour: emptyspace
+                events:
+                  change: './bloglinear.events::onChange_modelTerms'
                 template:
                   type: TermLabel
   - type: CollapseBox
