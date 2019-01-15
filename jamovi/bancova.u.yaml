@@ -154,6 +154,7 @@ children:
         name: postHocSupplier
         persistentItems: false
         stretchFactor: 1
+        populate: manual
         events:
           change: './bancova.events::onChange_postHocSupplier'
         children:
@@ -180,6 +181,7 @@ children:
         name: plotsSupplier
         persistentItems: false
         stretchFactor: 1
+        populate: manual
         events:
             change: './bancova.events::onChange_plotsSupplier'
         children:

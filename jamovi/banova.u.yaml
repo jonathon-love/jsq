@@ -169,6 +169,7 @@ children:
         name: plotsSupplier
         persistentItems: false
         stretchFactor: 1
+        populate: manual
         events:
             change: './banova.events::onChange_plotsSupplier'
         children:
