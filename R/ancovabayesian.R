@@ -80,7 +80,7 @@ AncovaBayesian	 <- function(dataset = NULL, options, perform = "run", callback =
 				change$fixedSamplesNumber)) {
 			state <- NULL
 		} else {
-			perform <- "run"
+			# perform <- "run"
 		}
 	}
 
@@ -109,6 +109,8 @@ AncovaBayesian	 <- function(dataset = NULL, options, perform = "run", callback =
 	results[[".meta"]] <- meta
 	results[["title"]] <- "Bayesian ANCOVA"
 
+	model.comparison.perform.override <- perform
+
 ## DATA
 	dataset <- .readBayesianLinearModelData(dataset, options, perform)
 
@@ -126,12 +128,15 @@ AncovaBayesian	 <- function(dataset = NULL, options, perform = "run", callback =
 		model <- model.object$model
 		status <- model.object$status
 	} else {
+
+		model.comparison.perform.override <- 'run'
+
 		model <- state$model
 		status <- state$status
 	}
 	
 ## Posterior Table
-	model.comparison <- .theBayesianLinearModelsComparison(model, options, perform, status, populate = FALSE)
+	model.comparison <- .theBayesianLinearModelsComparison(model, options, perform=model.comparison.perform.override, status, populate = FALSE)
 	results[["model comparison"]] <- model.comparison$modelTable
 	
 	if (is.null(state))
@@ -179,8 +184,8 @@ AncovaBayesian	 <- function(dataset = NULL, options, perform = "run", callback =
 	keepDescriptivesPlot <- lapply(descriptivesPlot, function(x) x$data)
 		
 	new.state <- list(options = options, model = model, status = status, keep = keepDescriptivesPlot)
-	
-	if (perform == "run" || ! status$ready || ! is.null(state)) {
+
+	if (perform == "run" || ! status$ready) {  # || ! is.null(state)) {
 		return(list(results = results, status = "complete", state = new.state, keep = keepDescriptivesPlot))
 	} else {
 		return(list(results = results, status = "inited", keep = keepDescriptivesPlot))
