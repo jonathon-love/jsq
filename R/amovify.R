@@ -162,6 +162,8 @@ JAnalysis <- function(
                         }
                     }
 
+                    self$results$setRefs('jasp')
+
                     # debug <- jmvcore::Preformatted$new(
                     #     options=self$options,
                     #     name='debug',
@@ -209,6 +211,11 @@ JAnalysis <- function(
                         private$.populateArray(element, data)
                     else if (inherits(element, 'Image'))
                         private$.populateImage(element, data)
+
+                    if ('citation' %in% names(data)) {
+                        refs <- private$.getRefNames(data$citation)
+                        element$setRefs(refs)
+                    }
 
                     if (is.list(data) && ! is.null(data$error)) {
                         if (is.character(data$error))
@@ -435,6 +442,18 @@ JAnalysis <- function(
                     }
 
                     item
+                },
+                .getRefNames=function(refs) {
+                    refNames <- vapply(refs, function(ref) {
+                        for (name in names(.jmvrefs)) {
+                            comp <- .jmvrefs[[name]]
+                            if (startsWith(ref, comp$authors))
+                                return(name)
+                        }
+                        return('')
+                    }, 'a')
+                    refNames <- c('jasp', refNames)
+                    refNames
                 }
             ),
             active = list(
