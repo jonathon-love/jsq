@@ -447,13 +447,18 @@ JAnalysis <- function(
                     refNames <- vapply(refs, function(ref) {
                         for (name in names(.jmvrefs)) {
                             comp <- .jmvrefs[[name]]
-                            if (startsWith(ref, comp$authors))
+                            if (startsWith(ref, comp$author))
                                 return(name)
                         }
                         return('')
                     }, 'a')
                     refNames <- c('jasp', refNames)
                     refNames
+                }
+            ),
+            public = list(
+                asSource = function() {
+                    '# Syntax for this analysis is unavailable at this time'
                 }
             ),
             active = list(

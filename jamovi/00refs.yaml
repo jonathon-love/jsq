@@ -1,122 +1,165 @@
 ---
 refs:
     jasp:
-        authors: JASP Team
+        type: software
+        author: JASP Team
         year: 2018
         title: JASP
         publisher: '[Computer software]. Retrieved from https://jasp-stats.org'
         url: https://jasp-stats.org
 
     BF:
-        authors: Morey, R. D., & Rouder, J. N.
+        type: software
+        author: Morey, R. D., & Rouder, J. N.
         year: 2018
         title: 'BayesFactor: Computation of Bayes Factors for Common Designs'
         publisher: '[R package]. Retrieved from https://cran.r-project.org/package=BayesFactor'
         url: https://cran.r-project.org/package=BayesFactor
 
     btt:
-        authors: Rouder, J. N., Speckman, P. L., Sun, D., Morey, R. D., & Iverson, G.
+        type: article
+        author: Rouder, J. N., Speckman, P. L., Sun, D., Morey, R. D., & Iverson, G.
         year: 2009
         title: Bayesian t tests for accepting and rejecting the null hypothesis
-        publisher: Psychonomic Bulletin & Review, 16, 225–237
+        publisher: Psychonomic Bulletin & Review
+        volume: 16
+        pages: 225-237
 
     bfi:
-        authors: Gronau, Q. F., Ly, A., & Wagenmakers, E.-J.
+        type: article
+        author: Gronau, Q. F., Ly, A., & Wagenmakers, E.-J.
         year: 2017
         title: Informed Bayesian T-Tests
         publisher: 'Manuscript submitted for publication and uploaded to arXiv: https://arxiv.org/abs/1704.02479'
         url: https://arxiv.org/abs/1704.02479
 
     clyde11:
-        authors: Clyde, M. A., Ghosh, J., & Littman, M. L.
+        type: article
+        author: Clyde, M. A., Ghosh, J., & Littman, M. L.
         year: 2011
         title: Bayesian adaptive sampling for variable selection and model averaging
-        publisher: Journal of Computational and Graphical Statistics, 20, 80-101.
+        publisher: Journal of Computational and Graphical Statistics
+        volume: 20
+        pages: 80-101
 
     clyde17:
-        authors: Clyde, M. A.
+        type: software
+        author: Clyde, M. A.
         year: 2017
         title: 'BAS: Bayesian Adaptive Sampling for Bayesian Model Averaging'
         publisher: '[R package]. Retrieved from https://cran.r-project.org/package=BAS'
         url: https://cran.r-project.org/package=BAS
 
     jamil:
-        authors: Jamil, T., Ly, A., Morey, R. D., Love, J., Marsman, M., & Wagenmakers, E.-J.
+        type: article
+        author: Jamil, T., Ly, A., Morey, R. D., Love, J., Marsman, M., & Wagenmakers, E.-J.
         year: 2017
         title: Default Gunel and Dickey Bayes factors for contingency tables
-        publisher: Behavior Research Methods, 49, 638-652
+        publisher: Behavior Research Methods
+        volume: 49
+        pages: 638-652
 
     ly16:
-        authors: Ly, A., Verhagen, A. J. & Wagenmakers, E.-J.
+        type: article
+        author: Ly, A., Verhagen, A. J. & Wagenmakers, E.-J.
         year: 2016
         title: 'Harold Jeffreys's Default Bayes Factor Hypothesis Tests: Explanation, Extension, and Application in Psychology'
-        publisher: Journal of Mathematical Psychology, 72, 19-32
+        publisher: Journal of Mathematical Psychology
+        volume: 72
+        pages: 19-32
 
     ly18:
-        authors: Ly, A., Marsman, M., Wagenmakers, E.-J.
+        type: article
+        author: Ly, A., Marsman, M., Wagenmakers, E.-J.
         year: 2018
         title: Analytic Posteriors for Pearson’s Correlation Coefficient
-        publisher: Statistica Neerlandica, 72(1), 4-13
+        publisher: Statistica Neerlandica
+        volume: 72
+        issue: 1
+        pages: 4-13
 
     gunel:
-        authors: Gunel, E., & Dickey, J.
+        type: article
+        author: Gunel, E., & Dickey, J.
         year: 1974
         title: Bayes factors for independence in contingency tables
-        publisher: Biometrika, 61, 545-557
+        publisher: Biometrika
+        volume: 61
+        pages: 545-557
 
     over:
-        authors: Overstall, A., & King, R.
+        type: article
+        author: Overstall, A., & King, R.
         year: 2014
         title: 'conting: an R package for Bayesian analysis of complete and incomplete contingency tables'
-        publisher: Journal of Statistical Software, 58(7), 1-27
+        publisher: Journal of Statistical Software
+        volume: 58
+        issue: 7
+        pages: 1-27
 
     vd:
-        authors: van Doorn, J., Ly, A., Marsman, M., & Wagenmakers, E. J.
+        type: article
+        author: van Doorn, J., Ly, A., Marsman, M., & Wagenmakers, E. J.
         year: 2018
         title: Bayesian Latent-Normal Inference for the Rank Sum Test, the Signed Rank Test, and Spearman's rho
         publisher: 'Manuscript submitted for publication and uploaded to arXiv: https://arxiv.org/abs/1703.01805'
         url: https://arxiv.org/abs/1703.01805
 
     vd2:
-        authors: van Doorn, J.B., Ly, A., Marsman, M. & Wagenmakers, E.-J.
+        type: article
+        author: van Doorn, J.B., Ly, A., Marsman, M. & Wagenmakers, E.-J.
         year: in press
         title: Bayesian Inference for Kendall’s Rank Correlation Coefficient
         publisher: The American Statistician
 
     jef:
-        authors: Jeffreys, H.
+        type: book
+        author: Jeffreys, H.
         year: 1961
         title: Theory of Probability
         publisher: Oxford, Oxford University Press
 
     jef38:
-        authors: Jeffreys, H.
+        type: book
+        author: Jeffreys, H.
         year: 1938
         title: Significance tests when several degrees of freedom arise simultaneously
-        publisher: Proceedings of the Royal Society of London. Series A, Mathematical and Physical Sciences, 165, 161–198
+        publisher: Proceedings of the Royal Society of London. Series A, Mathematical and Physical Sciences
+        volume: 165
+        pages: 161–198
 
     west:
-        authors: Westfall, P. H., Johnson, W. O., & Utts, J. M.
+        type: article
+        author: Westfall, P. H., Johnson, W. O., & Utts, J. M.
         year: 1997
         title: A Bayesian perspective on the Bonferroni adjustment
-        publisher: Biometrika, 84, 419-427
+        publisher: Biometrika
+        volume: 84
+        pages: 419-427
 
     ohag:
-        authors: O’Hagan, A., & Forster, J.
+        type: book
+        author: O’Hagan, A., & Forster, J.
         year: 2004
         title: 'Kendall’s advanced theory of statistics vol. 2B: Bayesian inference (2nd ed.)'
         publisher: 'London: Arnold'
 
     hald:
-        authors: Haldane, J. B. S.
+        type: article
+        author: Haldane, J. B. S.
         year: 1932
         title: A note on inverse probability
-        publisher: Mathematical Proceedings of the Cambridge Philosophical Society, 28, 55-61
+        publisher: Mathematical Proceedings of the Cambridge Philosophical Society
+        volume: 28
+        pages: 55-61
 
     roud:
-        authors: Rouder, J. N., Morey, R. D., Speckman, P. L., & Province, J. M.
+        type: article
+        author: Rouder, J. N., Morey, R. D., Speckman, P. L., & Province, J. M.
         year: 2012
         title: Default Bayes factors for ANOVA designs
-        publisher: Journal of Mathematical Psychology, 56, 356-374
+        publisher: Journal of Mathematical Psychology
+        volume: 56
+        pages: 356-374
 
 ...
