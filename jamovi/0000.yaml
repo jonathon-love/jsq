@@ -1,7 +1,7 @@
 ---
 title: jsq - Bayesian Methods
 name: jsq
-version: 0.9.0
+version: 0.9.1
 jms: '1.0'
 authors:
   - The JASP Team
@@ -13,8 +13,9 @@ date: '2019-01-01'
 description: >
   A suite of Bayesian statistical methods, including t-tests, ANOVAs, linear
   models, and contingency tables. These tests are a port of the Bayesian
-  analyses from the JASP statistical software (see <a href="#">
-  www.jasp-stats.org</a> for more information).
+  analyses from the JASP statistical software (see <a
+  href="https://jasp-stats.org" target="_blank">jasp-stats.org</a> for more
+  information).
 analyses:
   - title: Bayesian Independent Samples T-Test
     name: bttestIS
