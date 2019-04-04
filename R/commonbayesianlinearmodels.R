@@ -689,8 +689,8 @@
 	effectsTable[["title"]] <- "Analysis of Effects"
 	effectsTable[["citation"]] <-
 		list(
-			"Morey, R. D. & Rouder, J. N. (2015). BayesFactor (Version 0.9.10-2)[Computer software].",
-			"Rouder, J. N., Morey, R. D., Speckman, P. L., Province, J. M., (2012) Default Bayes Factors for ANOVA Designs. Journal of Mathematical Psychology. 56. p. 356-374."
+			"Morey, R. D., & Rouder, J. N. (2015). BayesFactor (Version 0.9.10-2)[Computer software].",
+			"Rouder, J. N., Morey, R. D., Speckman, P. L., & Province, J. M. (2012) Default Bayes Factors for ANOVA Designs. Journal of Mathematical Psychology. 56. p. 356-374."
 		)
 
 	if (options$bayesFactorType == "LogBF10"){
@@ -842,8 +842,8 @@
 	estimatesTable [["title"]] <- "Parameter Estimates"
 	estimatesTable [["citation"]] <-
 		list (
-			"Morey, R. D. & Rouder, J. N. (2015). BayesFactor (Version 0.9.10-2)[Computer software].",
-			"Rouder, J. N., Morey, R. D., Speckman, P. L., Province, J. M., (2012) Default Bayes Factors for ANOVA Designs. Journal of Mathematical Psychology. 56. p. 356-374."
+			"Morey, R. D., & Rouder, J. N. (2015). BayesFactor (Version 0.9.10-2)[Computer software].",
+			"Rouder, J. N., Morey, R. D., Speckman, P. L., & Province, J. M. (2012) Default Bayes Factors for ANOVA Designs. Journal of Mathematical Psychology. 56. p. 356-374."
 		)
 	
 	alpha <- (1 - options$posteriorEstimatesCredibleIntervalInterval) / 2
