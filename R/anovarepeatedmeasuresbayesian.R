@@ -131,7 +131,7 @@ AnovaRepeatedMeasuresBayesian <- function(dataset = NULL, options, perform = "ru
 				change$fixedSamplesNumber)) {
 			state <- NULL
 		} else {
-			perform <- "run" #FIXME other tables need the init phase.
+			perform2 <- "run" #FIXME other tables need the init phase.
 		}
 	}
 
@@ -141,11 +141,11 @@ AnovaRepeatedMeasuresBayesian <- function(dataset = NULL, options, perform = "ru
 
 if (is.null(state)) {
 ##STATUS (INITIAL)
-	status <- .setBayesianLinearModelStatus(dataset, options, perform)
+	status <- .setBayesianLinearModelStatus(dataset, options, perform2)
 	status$analysis.type <- 'rmANOVA'
 
 ## MODEL
-	model.object <- .theBayesianLinearModels(dataset, options, perform, status, .callbackBayesianLinearModels, .callbackBFpackage, results, analysisType = "RM-ANOVA")
+	model.object <- .theBayesianLinearModels(dataset, options, perform2, status, .callbackBayesianLinearModels, .callbackBFpackage, results, analysisType = "RM-ANOVA")
 
 	if (is.null(model.object)) # analysis cancelled by the callback
 		return()
@@ -158,30 +158,30 @@ if (is.null(state)) {
 }
 
 ## Posterior Table
-	model.comparison <- .theBayesianLinearModelsComparison(model, options, perform, status, populate = FALSE)
+	model.comparison <- .theBayesianLinearModelsComparison(model, options, perform2, status, populate = FALSE)
 	results[["model comparison"]] <- model.comparison$modelTable
 	if (is.null(state))
 		model <- model.comparison$model
 
 ## Effects Table
-	results[["effects"]] <- .theBayesianLinearModelsEffects(model, options, perform, status, populate = FALSE)
+	results[["effects"]] <- .theBayesianLinearModelsEffects(model, options, perform2, status, populate = FALSE)
 
 ## Posterior Estimates
-	results[["estimates"]] <- .theBayesianLinearModelEstimates(model, options, perform, status)
+	results[["estimates"]] <- .theBayesianLinearModelEstimates(model, options, perform2, status)
 
 ## Post Hoc Table
-	results[["posthoc"]] <- .anovaNullControlPostHocTable(dataset, options, perform, status, analysisType = "RM-ANOVA")
+	results[["posthoc"]] <- .anovaNullControlPostHocTable(dataset, options, perform2, status, analysisType = "RM-ANOVA")
 
 ## Descriptives Table
-	descriptivesDataset <- .readBayesianRepeatedMeasuresShortData(options, perform)
-	descriptivesTable <- .rmAnovaDescriptivesTable(descriptivesDataset, options, perform, status, stateDescriptivesTable = NULL)[["result"]]
+	descriptivesDataset <- .readBayesianRepeatedMeasuresShortData(options, perform2)
+	descriptivesTable <- .rmAnovaDescriptivesTable(descriptivesDataset, options, perform2, status, stateDescriptivesTable = NULL)[["result"]]
 
 ## Descriptives Plot
 	options$plotErrorBars <- options$plotCredibleInterval
 	options$errorBarType <- "confidenceInterval"
 	options$confidenceIntervalInterval <- options$plotCredibleIntervalInterval
 	plotOptionsChanged <- isTRUE( identical(wantsTwoPlots, options$plotSeparatePlots) == FALSE )
-	descriptivesPlot <- .rmAnovaDescriptivesPlot(descriptivesDataset, options, perform, status, stateDescriptivesPlot = NULL)[["result"]]
+	descriptivesPlot <- .rmAnovaDescriptivesPlot(descriptivesDataset, options, perform2, status, stateDescriptivesPlot = NULL)[["result"]]
 
 	if (length(descriptivesPlot) == 1) {
 		results[["descriptivesObj"]] <- list(
@@ -207,7 +207,7 @@ if (is.null(state)) {
 
 	new.state <- list(options = options, model = model, status = status, keep = keepDescriptivesPlot)
 
-	if (perform == "run" || ! status$ready || ! is.null(state)) {
+	if (perform == "run" || ! status$ready) { # || ! is.null(state)) {
 		return(list(results = results, status = "complete", state = new.state, keep = keepDescriptivesPlot))
 	} else {
 		return(list(results = results, status = "inited", keep = keepDescriptivesPlot))
