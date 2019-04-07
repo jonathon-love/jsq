@@ -170,9 +170,11 @@ children:
         children:
           - type: TargetLayoutBox
             children:
-              - type: VariablesListBox
+              - type: ListBox
                 name: postHoc
                 isTarget: true
+                template:
+                    type: VariableLabel
       - type: LayoutBox
         margin: large
         children:
