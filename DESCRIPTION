@@ -17,4 +17,5 @@ Imports: jmvcore (>= 0.9.5.18),
          JASPgraphs,
          plotrix,
          logspline,
-         conting
+         conting,
+         BAS
