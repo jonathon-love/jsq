@@ -114,9 +114,7 @@ options:
           type: Group
           elements:
               - name: components
-                type: Array
-                template:
-                    type: String
+                type: Term
               - name: isNuisance
                 type: Bool
 

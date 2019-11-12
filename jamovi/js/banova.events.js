@@ -20,6 +20,24 @@ const events = {
         filterModelTerms(ui, this);
     },
 
+    onUpdate_modelSupplier: function(ui) {
+        let variableList = this.cloneArray(ui.factors.value(), []);
+        let randomList = this.cloneArray(ui.random.value(), []);
+        let combinedList = variableList.concat(randomList);
+        ui.modelSupplier.setValue(this.valuesToItems(combinedList, FormatDef.variable));
+    },
+
+    onUpdate_plotsSupplier: function(ui) {
+        let variableList = this.cloneArray(ui.factors.value(), []);
+        let randomList = this.cloneArray(ui.random.value(), []);
+        let combinedList = variableList.concat(randomList);
+        ui.plotsSupplier.setValue(this.valuesToItems(combinedList, FormatDef.variable));
+    },
+
+    onUpdate_postHocSupplier: function(ui) {
+        updatePostHocSupplier(ui, this);
+    },
+
     onChange_plotsSupplier: function(ui) {
         let values = this.itemsToValues(ui.plotsSupplier.value());
         this.checkValue(ui.plotHz, false, values, FormatDef.variable);

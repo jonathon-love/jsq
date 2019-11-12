@@ -91,6 +91,8 @@ children:
         label: Components
         persistentItems: true
         stretchFactor: 1
+        events:
+            update: './bloglinear.events::onUpdate_modelSupplier'
         children:
           - type: TargetLayoutBox
             transferAction: interactions

@@ -9,6 +9,11 @@ const events = {
         calcModelTerms(ui, this);
     },
 
+    onUpdate_modelSupplier: function(ui) {
+        let variableList = this.cloneArray(ui.factors.value(), []);
+        ui.modelSupplier.setValue(this.valuesToItems(variableList, FormatDef.variable));
+    },
+
     onChange_modelTerms: function(ui) {
         filterModelTerms(ui, this);
     }
