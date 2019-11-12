@@ -116,6 +116,8 @@ children:
         label: Components
         persistentItems: true
         stretchFactor: 1
+        events:
+          update: './bancova.events::onUpdate_modelSupplier'
         children:
           - type: TargetLayoutBox
             transferAction: interactions
@@ -157,6 +159,7 @@ children:
         populate: manual
         events:
           change: './bancova.events::onChange_postHocSupplier'
+          update: './bancova.events::onUpdate_postHocSupplier'
         children:
           - type: TargetLayoutBox
             children:
@@ -184,6 +187,7 @@ children:
         populate: manual
         events:
             change: './bancova.events::onChange_plotsSupplier'
+            update: './bancova.events::onUpdate_plotsSupplier'
         children:
           - type: TargetLayoutBox
             label: Horizontal axis

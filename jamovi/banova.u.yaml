@@ -104,6 +104,8 @@ children:
         populate: manual
         persistentItems: true
         stretchFactor: 1
+        events:
+            update: './banova.events::onUpdate_modelSupplier'
         children:
           - type: TargetLayoutBox
             transferAction: interactions
@@ -145,6 +147,7 @@ children:
         populate: manual
         events:
           change: './banova.events::onChange_postHocSupplier'
+          update: './banova.events::onUpdate_postHocSupplier'
         children:
           - type: TargetLayoutBox
             children:
@@ -172,6 +175,7 @@ children:
         populate: manual
         events:
             change: './banova.events::onChange_plotsSupplier'
+            update: './banova.events::onUpdate_plotsSupplier'
         children:
           - type: TargetLayoutBox
             label: Horizontal axis

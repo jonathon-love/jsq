@@ -128,6 +128,8 @@ children:
         populate: manual
         persistentItems: true
         stretchFactor: 1
+        events:
+          update: './banovarm.events::onUpdate_modelSupplier'
         children:
           - type: TargetLayoutBox
             transferAction: interactions
@@ -167,6 +169,8 @@ children:
         name: postHocSupplier
         persistentItems: false
         stretchFactor: 1
+        events:
+            update: './banovarm.events::onUpdate_postHocSupplier'
         children:
           - type: TargetLayoutBox
             children:
@@ -194,6 +198,8 @@ children:
         populate: manual
         persistentItems: false
         stretchFactor: 1
+        events:
+            update: './banovarm.events::onUpdate_plotsSupplier'
         children:
           - type: TargetLayoutBox
             label: Horizontal axis

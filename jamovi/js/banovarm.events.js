@@ -30,6 +30,53 @@ const events = {
         updateModelTerms(ui, this);
     },
 
+    onUpdate_modelSupplier: function(ui) {
+        let variableList = this.cloneArray(ui.bs.value(), []);
+        let randomList = this.cloneArray(ui.covs.value(), []);
+        let factorList = this.cloneArray(ui.rm.value(), []);
+
+        //let customVariables = [];
+        for(let i = 0; i < factorList.length; i++) {
+        //    customVariables.push( { name: factorList[i].label, measureType: 'none', dataType: 'none', levels: [] } );
+            factorList[i] = factorList[i].label;
+        }
+        //this.setCustomVariables(customVariables);
+
+        let combinedList = factorList.concat(variableList).concat(randomList);
+
+        ui.modelSupplier.setValue(this.valuesToItems(combinedList, FormatDef.variable));
+    },
+
+    onUpdate_postHocSupplier: function(ui) {
+        let variableList = this.cloneArray(ui.bs.value(), []);
+        let factorList = this.cloneArray(ui.rm.value(), []);
+
+        //let customVariables = [];
+        for(let i = 0; i < factorList.length; i++) {
+        //    customVariables.push( { name: factorList[i].label, measureType: 'none', dataType: 'none', levels: [] } );
+            factorList[i] = factorList[i].label;
+        }
+        //this.setCustomVariables(customVariables);
+        let varList = factorList.concat(variableList);
+
+        ui.postHocSupplier.setValue(this.valuesToItems(varList, FormatDef.variable));
+    },
+
+    onUpdate_plotsSupplier: function(ui) {
+        let variableList = this.cloneArray(ui.bs.value(), []);
+        let factorList = this.cloneArray(ui.rm.value(), []);
+
+        //let customVariables = [];
+        for(let i = 0; i < factorList.length; i++) {
+        //    customVariables.push( { name: factorList[i].label, measureType: 'none', dataType: 'none', levels: [] } );
+            factorList[i] = factorList[i].label;
+        }
+        //this.setCustomVariables(customVariables);
+        let varList = factorList.concat(variableList);
+
+        ui.plotsSupplier.setValue(this.valuesToItems(varList, FormatDef.variable));
+    },
+
     onChange_modelTerms: function(ui) {
         filterModelTerms(ui, this);
     },
