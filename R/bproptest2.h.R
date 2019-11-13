@@ -191,9 +191,6 @@ bpropTest2 <- function(
         priorA = priorA,
         priorB = priorB)
 
-    results <- bpropTest2Results$new(
-        options = options)
-
     analysis <- bpropTest2Class$new(
         options = options,
         data = data)

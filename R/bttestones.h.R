@@ -390,9 +390,6 @@ bttestOneS <- function(
         plotWidth = plotWidth,
         plotHeight = plotHeight)
 
-    results <- bttestOneSResults$new(
-        options = options)
-
     analysis <- bttestOneSClass$new(
         options = options,
         data = data)

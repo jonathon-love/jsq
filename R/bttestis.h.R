@@ -528,9 +528,6 @@ bttestIS <- function(
         plotWidth = plotWidth,
         plotHeight = plotHeight)
 
-    results <- bttestISResults$new(
-        options = options)
-
     analysis <- bttestISClass$new(
         options = options,
         data = data)

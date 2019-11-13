@@ -131,12 +131,9 @@ blinRegOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
                     "modelTerms",
                     NULL,
                     elements=list(
-                        jmvcore::OptionArray$new(
+                        jmvcore::OptionTerm$new(
                             "components",
-                            NULL,
-                            template=jmvcore::OptionString$new(
-                                "components",
-                                NULL)),
+                            NULL),
                         jmvcore::OptionBool$new(
                             "isNuisance",
                             NULL))))
@@ -594,9 +591,6 @@ blinReg <- function(
         basNModels = basNModels,
         mcmcN = mcmcN,
         ciN = ciN)
-
-    results <- blinRegResults$new(
-        options = options)
 
     analysis <- blinRegClass$new(
         options = options,

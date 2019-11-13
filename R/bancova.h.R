@@ -85,12 +85,9 @@ bancovaOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
                     "modelTerms",
                     NULL,
                     elements=list(
-                        jmvcore::OptionArray$new(
+                        jmvcore::OptionTerm$new(
                             "components",
-                            NULL,
-                            template=jmvcore::OptionString$new(
-                                "components",
-                                NULL)),
+                            NULL),
                         jmvcore::OptionBool$new(
                             "isNuisance",
                             NULL))))
@@ -423,9 +420,6 @@ bancova <- function(
         rScaleCovs = rScaleCovs,
         sampling = sampling,
         nSamples = nSamples)
-
-    results <- bancovaResults$new(
-        options = options)
 
     analysis <- bancovaClass$new(
         options = options,

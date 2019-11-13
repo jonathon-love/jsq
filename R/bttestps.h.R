@@ -378,9 +378,6 @@ bttestPS <- function(
         plotWidth = plotWidth,
         plotHeight = plotHeight)
 
-    results <- bttestPSResults$new(
-        options = options)
-
     analysis <- bttestPSClass$new(
         options = options,
         data = data)

@@ -234,9 +234,6 @@ bcorrPairs <- function(
         plotSeq = plotSeq,
         missing = missing)
 
-    results <- bcorrPairsResults$new(
-        options = options)
-
     analysis <- bcorrPairsClass$new(
         options = options,
         data = data)

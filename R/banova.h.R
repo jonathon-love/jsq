@@ -80,12 +80,9 @@ banovaOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
                     "modelTerms",
                     NULL,
                     elements=list(
-                        jmvcore::OptionArray$new(
+                        jmvcore::OptionTerm$new(
                             "components",
-                            NULL,
-                            template=jmvcore::OptionString$new(
-                                "components",
-                                NULL)),
+                            NULL),
                         jmvcore::OptionBool$new(
                             "isNuisance",
                             NULL))))
@@ -396,9 +393,6 @@ banova <- function(
         rScaleRand = rScaleRand,
         sampling = sampling,
         nSamples = nSamples)
-
-    results <- banovaResults$new(
-        options = options)
 
     analysis <- banovaClass$new(
         options = options,

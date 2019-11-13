@@ -131,12 +131,9 @@ banovaRMOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
                     "modelTerms",
                     NULL,
                     elements=list(
-                        jmvcore::OptionArray$new(
+                        jmvcore::OptionTerm$new(
                             "components",
-                            NULL,
-                            template=jmvcore::OptionString$new(
-                                "components",
-                                NULL)),
+                            NULL),
                         jmvcore::OptionBool$new(
                             "isNuisance",
                             NULL))))
@@ -408,9 +405,6 @@ banovaRM <- function(
         rScaleCovs = rScaleCovs,
         sampling = sampling,
         nSamples = nSamples)
-
-    results <- banovaRMResults$new(
-        options = options)
 
     analysis <- banovaRMClass$new(
         options = options,

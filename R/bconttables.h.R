@@ -229,9 +229,6 @@ bcontTables <- function(
         plotOddsRatioAddInfo = plotOddsRatioAddInfo,
         priorWidth = priorWidth)
 
-    results <- bcontTablesResults$new(
-        options = options)
-
     analysis <- bcontTablesClass$new(
         options = options,
         data = data)

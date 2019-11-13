@@ -286,9 +286,6 @@ blogLinear <- function(
         sampling = sampling,
         nSamples = nSamples)
 
-    results <- blogLinearResults$new(
-        options = options)
-
     analysis <- blogLinearClass$new(
         options = options,
         data = data)

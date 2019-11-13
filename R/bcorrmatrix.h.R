@@ -229,9 +229,6 @@ bcorrMatrix <- function(
         priorWidth = priorWidth,
         missing = missing)
 
-    results <- bcorrMatrixResults$new(
-        options = options)
-
     analysis <- bcorrMatrixClass$new(
         options = options,
         data = data)
