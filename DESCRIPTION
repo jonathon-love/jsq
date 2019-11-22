@@ -14,8 +14,8 @@ LazyData: true
 Imports: jmvcore (>= 0.9.6.4),
          R6,
          BayesFactor,
-         JASPgraphs,
          plotrix,
          logspline,
          conting,
          BAS
+Remotes: jonathon-love/JASPgraphs@337739b893d7634b8d9481d4256ddc13962a6ede

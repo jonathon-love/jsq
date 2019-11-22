@@ -90,5 +90,7 @@ analyses:
     menuGroup: Frequencies
     menuSubgroup: Bayesian (jsq)
     menuTitle: Bayesian Log-Linear Regression
+usesNative: true
+minApp: 1.0.8
 
 ...
