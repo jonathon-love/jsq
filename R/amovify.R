@@ -456,11 +456,6 @@ JAnalysis <- function(
                     refNames
                 }
             ),
-            public = list(
-                asSource = function() {
-                    '# Syntax for this analysis is unavailable at this time'
-                }
-            ),
             active = list(
                 jdata = function() {
                     data <- super$data

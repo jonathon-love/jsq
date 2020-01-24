@@ -6,6 +6,14 @@ menuSubgroup: Bayesian (jsq)
 version: '1.0.0'
 jas: '1.2'
 
+formula:
+    vars:
+        from: lhs
+        required: true
+    group:
+        from: rhs
+        subset: 1
+
 options:
     - name: data
       type: Data

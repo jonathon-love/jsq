@@ -47,7 +47,15 @@ bttestISClass <- JAnalysis(
             plotWidth='plotWidth',
             plotHeight='plotHeight',
             missing='missingValues',
-            `missing:listwise`='excludeListwise')
+            `missing:listwise`='excludeListwise'),
+        .sourcifyOption = function(option) {
+            if (option$name %in% c('vars', 'group'))
+                return('')
+            super$.sourcifyOption(option)
+        },
+        .formula=function() {
+            jmvcore:::composeFormula(self$options$vars, self$options$group)
+        }
     ),
     active=list(
         joptions=function() {

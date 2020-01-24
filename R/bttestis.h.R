@@ -439,6 +439,7 @@ bttestISBase <- if (requireNamespace('jmvcore')) R6::R6Class(
 #' @param infoTDf .
 #' @param plotWidth .
 #' @param plotHeight .
+#' @param formula (optional) the formula to use, see the examples
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$ttest} \tab \tab \tab \tab \tab a table \cr
@@ -483,10 +484,26 @@ bttestIS <- function(
     infoTS = 0.707,
     infoTDf = 1,
     plotWidth = 320,
-    plotHeight = 240) {
+    plotHeight = 240,
+    formula) {
 
     if ( ! requireNamespace('jmvcore'))
         stop('bttestIS requires jmvcore to be installed (restart may be required)')
+
+    if ( ! missing(formula)) {
+        if (missing(vars))
+            vars <- jmvcore::marshalFormula(
+                formula=formula,
+                data=`if`( ! missing(data), data, NULL),
+                from='lhs',
+                required=TRUE)
+        if (missing(group))
+            group <- jmvcore::marshalFormula(
+                formula=formula,
+                data=`if`( ! missing(data), data, NULL),
+                from='rhs',
+                subset='1')
+    }
 
     if ( ! missing(vars)) vars <- jmvcore::resolveQuo(jmvcore::enquo(vars))
     if ( ! missing(group)) group <- jmvcore::resolveQuo(jmvcore::enquo(group))
