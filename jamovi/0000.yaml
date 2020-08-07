@@ -1,7 +1,7 @@
 ---
 title: jsq - Bayesian Methods
 name: jsq
-version: 1.0.0
+version: 1.0.1
 jms: '1.0'
 authors:
   - The JASP Team
@@ -9,7 +9,6 @@ authors:
   - Ravi Selker
   - Jonathon Love
 maintainer: Jonathon Love <jon@thon.cc>
-date: '2019-01-01'
 description: >
   A suite of Bayesian statistical methods, including t-tests, ANOVAs, linear
   models, and contingency tables. These tests are a port of the Bayesian
