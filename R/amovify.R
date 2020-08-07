@@ -289,10 +289,12 @@ JAnalysis <- function(
                     footnotes <- data$footnotes
                     for (fn in footnotes) {
                         if (is.character(fn$symbol)) {
-                            if (fn$symbol == '<em>Note.</em>')
-                                table$setNote(fn$symbol, paste(fn$text))
+                            symbol <- stringi::stri_encode(fn$symbol, to='utf-8')
+                            text   <- stringi::stri_encode(fn$text, to='utf-8')
+                            if (symbol == '<em>Note.</em>')
+                                table$setNote(symbol, paste(text))
                             else
-                                table$setNote(fn$symbol, paste(fn$symbol, fn$text))
+                                table$setNote(symbol, paste(symbol, text))
                         }
                     }
 
