@@ -496,9 +496,14 @@ JAnalysis <- function(
                     oldNames <- names(transformed)
                     newNames <- private$optionsMap[oldNames]
 
-                    missing <- is.na(newNames)
-                    if (any(missing))
-                        stop(paste('new names do not exist for', paste(oldNames[missing], collapse=', ')))
+                    # this *was* a check to help during development, but now
+                    # the user can add annotations, adding annotations was
+                    # causing this to throw errors
+                    #
+                    # missing <- is.na(newNames)
+                    # if (any(missing))
+                    #     stop(paste('new names do not exist for', paste(oldNames[missing], collapse=', ')))
+
 
                     # substitute list option values
 
