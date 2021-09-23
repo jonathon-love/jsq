@@ -17,5 +17,6 @@ Imports: jmvcore (>= 0.9.6.4),
          plotrix,
          logspline,
          conting,
-         BAS
-Remotes: jonathon-love/JASPgraphs@337739b893d7634b8d9481d4256ddc13962a6ede
+         BAS,
+         cowplot
+Remotes: jonathon-love/JASPgraphs@071acf1be9ec26ced2b38c4aee0d23fc9a97c6b7
