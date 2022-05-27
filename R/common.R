@@ -2266,10 +2266,9 @@ as.list.footnotes <- function(footnotes) {
         ggplot2::ggsave(
             filename  = relativePathpng,
             plot      = plot,
-            device    = ragg::agg_png,
+            device    = function(...) ragg::agg_png(..., units='px'),
             width     = width * pngMultip,
             height    = height * pngMultip,
-            units     = "px",
             dpi       = ppi,
             limitsize = FALSE,
             bg        = 'transparent',
