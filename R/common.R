@@ -2257,27 +2257,62 @@ as.list.footnotes <- function(footnotes) {
     ppi <- .fromRCPP(".ppi")
 
     pngMultip <- .fromRCPP(".ppi") / 96
-    ggplot2::ggsave(
-    	filename  = relativePathpng,
-    	plot      = plot,
-    	device    = grDevices::png,
-    	width     = width  * pngMultip,
-    	height    = height * pngMultip,
-    	dpi       = ppi,
-		bg        = backgroundColor,
-    	res       = 72 * pngMultip,
-    	type      = type,
-    	limitsize = FALSE # because we supply png as a function, we specify pixels rather than inches
-    )
+
+    if (pngMultip < 2)
+        pngMultip <- 2
+
+    if (requireNamespace('ragg', quietly=TRUE)) {
+
+        ggplot2::ggsave(
+            filename  = relativePathpng,
+            plot      = plot,
+            device    = ragg::agg_png,
+            width     = width * pngMultip,
+            height    = height * pngMultip,
+            units     = "px",
+            dpi       = ppi,
+            limitsize = FALSE,
+            bg        = 'transparent',
+            res       = 72 * pngMultip,
+            scaling   = sqrt(1 / pngMultip))
+
+    } else {
+
+        ggplot2::ggsave(
+            filename  = relativePathpng,
+            plot      = plot,
+            device    = grDevices::png,
+            width     = width  * pngMultip,
+            height    = height * pngMultip,
+            dpi       = ppi,
+            bg        = backgroundColor,
+            res       = 72 * pngMultip,
+            type      = type,
+            limitsize = FALSE # because we supply png as a function, we specify pixels rather than inches
+        )
+    }
+
   } else {
   	# Calculate pixel multiplier
   	pngMultip <- .fromRCPP(".ppi") / 96
     isRecordedPlot <- inherits(plot, "recordedplot")
 
-    # Open graphics device and plot
-    grDevices::png(filename=relativePathpng, width=width * pngMultip,
-	               height=height * pngMultip, bg=backgroundColor,
-                   res=72 * pngMultip, type=type)
+    if (requireNamespace('ragg', quietly=TRUE)) {
+        ragg::agg_png(
+            filename=relativePathpng,
+            width=width * pngMultip,
+            height=height * pngMultip,
+            units='px',
+            background='transparent',
+            res=72 * pngMultip)
+    } else {
+        grDevices::png(type=type,
+            filename=relativePathpng,
+            width=width * pngMultip,
+            height=height * pngMultip,
+            bg='transparent',
+            res=72 * pngMultip)
+    }
 
     if (is.function(plot) && !isRecordedPlot) {
       if (obj) dev.control('enable') # enable plot recording
