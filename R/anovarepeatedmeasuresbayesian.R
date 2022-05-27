@@ -181,7 +181,7 @@ if (is.null(state)) {
 	options$errorBarType <- "confidenceInterval"
 	options$confidenceIntervalInterval <- options$plotCredibleIntervalInterval
 	plotOptionsChanged <- isTRUE( identical(wantsTwoPlots, options$plotSeparatePlots) == FALSE )
-	descriptivesPlot <- .rmAnovaDescriptivesPlot(descriptivesDataset, options, perform2, status, stateDescriptivesPlot = NULL)[["result"]]
+	descriptivesPlot <- .rmAnovaDescriptivesPlot(descriptivesDataset, options, perform, status, stateDescriptivesPlot = NULL)[["result"]]
 
 	if (length(descriptivesPlot) == 1) {
 		results[["descriptivesObj"]] <- list(
