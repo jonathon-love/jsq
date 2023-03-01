@@ -16,7 +16,9 @@ Imports: jmvcore (>= 0.9.6.4),
          BayesFactor,
          plotrix,
          logspline,
-         conting,
          BAS,
-         cowplot
-Remotes: jonathon-love/JASPgraphs@071acf1be9ec26ced2b38c4aee0d23fc9a97c6b7
+         cowplot,
+         BMS,
+         tseries
+Remotes: jonathon-love/JASPgraphs@071acf1be9ec26ced2b38c4aee0d23fc9a97c6b7,
+         cran/conting
