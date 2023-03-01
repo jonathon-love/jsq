@@ -1,7 +1,7 @@
 Package: jsq
 Type: Package
 Title: Bayesian Methods
-Version: 1.2.0
+Version: 1.2.1
 Author: The JASP Team, Damian Dropmann, Ravi Selker, Jonathon Love
 Maintainer: Jonathon Love <jon@thon.cc>
 Description: A suite of Bayesian statistical methods, including t-tests, ANOVAs,
