@@ -1510,7 +1510,9 @@ Ancova <- function(dataset=NULL, options, perform="run", callback=function(...) 
 
 			if (perform == "run" && status$ready && status$error == FALSE) {
 
-				sub  <- eval(parse(text=paste("dataset$", .v(namez), " == \"", row, "\"", sep="", collapse=" & ")))
+				sub <- rep(TRUE, nrow(dataset))
+				for (k in seq_along(namez))
+					sub <- sub & (dataset[[ .v(namez)[k] ]] == row[[ column.names[k] ]])
 
 				data <- base::subset(dataset, sub, select=.v(options$dependent))[[1]]
 

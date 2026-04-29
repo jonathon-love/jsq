@@ -329,19 +329,10 @@
       stop('Each grouping variable must have a level specified')
     }
     
-    # The levels vector may be a 'mix' of numeric and characters, we need to add additional quotation marks around characters.
-    if (is.character(levels)) {
-      levels <- vapply(levels, function(x) {
-        if (suppressWarnings(is.na(as.numeric(x)))) {
-          paste0("\"", x, "\"")
-        } else {
-          x
-        }
-      }, character(1))
-    }
-    
-    expr <- paste(.v(grouping), levels, sep='==', collapse='&')
-    dataset <- subset(dataset, eval(parse(text=expr)))
+    mask <- rep(TRUE, nrow(dataset))
+    for (k in seq_along(grouping))
+      mask <- mask & (dataset[[ .v(grouping[k]) ]] == levels[k])
+    dataset <- dataset[mask, , drop=FALSE]
     result <- func(dataset[[.v(target)]])
     
   } else {

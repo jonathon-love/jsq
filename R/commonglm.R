@@ -829,8 +829,9 @@
             row[[ columnNames[[j]] ]] <- as.character(cases[i, j])
           }
 
-          sub  <- eval(parse(text=paste("dataset$", .v(namez), " == \"", row,
-                                        "\"", sep="", collapse=" & ")))
+          sub <- rep(TRUE, nrow(dataset))
+          for (k in seq_along(namez))
+            sub <- sub & (dataset[[ .v(namez)[k] ]] == row[[ columnNames[k] ]])
 
           dat <- base::subset(dataset, sub)[[1]]
           N <- base::length(dat)

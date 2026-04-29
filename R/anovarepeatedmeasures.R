@@ -2387,7 +2387,9 @@ AnovaRepeatedMeasures <- function(dataset=NULL, options, perform="run", callback
 				for (j in 1:dim(cases)[2])
 					row[[ column.names[[j]] ]] <- as.character(cases[i, j])
 
-				sub  <- eval(parse(text=paste("dataset$", .v(namez), " == \"", row, "\"", sep="", collapse=" & ")))
+				sub <- rep(TRUE, nrow(dataset))
+				for (k in seq_along(namez))
+					sub <- sub & (dataset[[ .v(namez)[k] ]] == row[[ column.names[k] ]])
 
 				data <- base::subset(dataset, sub, select="dependent")[[1]]
 

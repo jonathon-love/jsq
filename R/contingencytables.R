@@ -1750,9 +1750,10 @@ ContingencyTables <- function(dataset=NULL, options, perform="run", callback=fun
 
 			} else {
 
-				ss.filter.string <- base::paste(.v(names(group)), "==\"", group, "\"", sep="", collapse="&")
-				ss.expression <- base::parse(text=ss.filter.string)
-				ss.dataset	  <- base::subset(dataset, select=.v(c(rows, columns, counts)), subset=eval(ss.expression))
+				ss.mask <- base::rep(TRUE, base::nrow(dataset))
+				for (nm in base::names(group))
+					ss.mask <- ss.mask & (dataset[[ .v(nm) ]] == group[[nm]])
+				ss.dataset <- dataset[ss.mask, .v(c(rows, columns, counts)), drop=FALSE]
 			}
 
 
