@@ -43,6 +43,10 @@ bancovaClass <- JAnalysis(
                 options$covariates <- list()
             if (is.null(options$priorCovariates))
                 options$priorCovariates <- 0.354
+            for (i in seq_along(options$modelTerms)) {
+                if (is.null(options$modelTerms[[i]]$isNuisance))
+                    options$modelTerms[[i]]$isNuisance <- FALSE
+            }
             options
         }
     )

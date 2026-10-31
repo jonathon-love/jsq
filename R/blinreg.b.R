@@ -74,6 +74,10 @@ blinRegClass <- JAnalysis(
         joptions = function() {
             options <- super$joptions
             options$posteriorSummaryPlotCredibleIntervalValue <- options$posteriorSummaryPlotCredibleIntervalValue / 100
+            for (i in seq_along(options$modelTerms)) {
+                if (is.null(options$modelTerms[[i]]$isNuisance))
+                    options$modelTerms[[i]]$isNuisance <- FALSE
+            }
             options
         }
     )

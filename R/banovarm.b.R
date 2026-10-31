@@ -52,6 +52,11 @@ banovaRMClass <- JAnalysis(
             if (is.null(options$plotSeparatePlots))
                 options$plotSeparatePlots <- ''
 
+            for (i in seq_along(options$modelTerms)) {
+                if (is.null(options$modelTerms[[i]]$isNuisance))
+                    options$modelTerms[[i]]$isNuisance <- FALSE
+            }
+
             options$repeatedMeasuresFactors <- lapply(
                 options$repeatedMeasuresFactors,
                 function(x) list(name=x$label, levels=x$levels))

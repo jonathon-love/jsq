@@ -144,6 +144,13 @@ var filterModelTerms = function(ui, context) {
     var diff = context.findChanges("termsList", termsList, true, FormatDef.term, 'components');
 
     var changed = false;
+    for (var i = 0; i < termsList.length; i++) {
+        if (termsList[i].isNuisance === null || termsList[i].isNuisance === undefined) {
+            termsList[i].isNuisance = false;
+            changed = true;
+        }
+    }
+
     if (diff.removed.length > 0) {
         var itemsRemoved = false;
         for (var i = 0; i < diff.removed.length; i++) {
